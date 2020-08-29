@@ -1,0 +1,74 @@
+<!DOCTYPE html><html class=''>
+<head>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <title>Jack's n-back</title>
+
+<link rel='stylesheet' type='text/css' href='jspsych.css'>
+<link rel='stylesheet' type='text/css' href='default_style.css'>
+<link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+
+<body>
+  <script src="https://jmkuhns.github.io/n-back/jspsych-6-2/jspsych.js" charset="utf-8"></script>
+  <script src = "https://jmkuhns.github.io/n-back/jspsych-6-2/plugins/jspsych-image-keyboard-response.js"></script>
+  <script src="https://jmkuhns.github.io/n-back/jspsych-6-2/plugins/jspsych-html-keyboard-response.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://jmkuhns.github.io/n-back/jspsych-6-2/css/jspsych.css">
+  <script src="https://jmkuhns.github.io/n-back/flanker_main.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+
+<script src='https://jmkuhns.github.io/n-back/js/jquery.min.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/math.min.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/jspsych.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/plugins/jspsych-text.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/poldrack_plugins/jspsych-poldrack-text.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/poldrack_plugins/jspsych-poldrack-categorize.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/poldrack_plugins/jspsych-poldrack-instructions.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/plugins/jspsych-call-function.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/poldrack_plugins/jspsych-attention-check.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/poldrack_plugins/jspsych-poldrack-single-stim.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/plugins/jspsych-survey-text.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/poldrack_plugins/jspsych-single-stim-button.js'></script>
+<script src='https://jmkuhns.github.io/n-back/js/jspsych/poldrack_plugins/poldrack_utils.js'></script>
+<script src='https://jmkuhns.github.io/n-back/experiment.js'></script>
+
+<script>
+var task_name = "n-back";
+var sbj_id = "${e://Field/sub_id}";
+
+// must put save_data php url here
+save_url = "https://psy.uncg.edu/exp_data/save_data.php";
+var data_dir =  'n-back/data';
+
+
+// my preference is to include the task and sbj_id in the file name
+var file_name = task_name + '_' + sbj_id;
+
+function save_data_json() {
+    jQuery.ajax({
+        type: 'post',
+        cache: false,
+        url: save_url,
+        data: {
+            data_dir: data_dir,
+            file_name: file_name + '.json', // the file type should be added
+            exp_data: jsPsych.data.get().json()
+        }
+    });
+};
+    jsPsych.init({
+             timeline: n_back_experiment,
+             display_element: 'display_stage',
+             on_data_update: function(){
+     		            save_data_json();
+     	       },
+             /* Change 1: Using `display_element` */
+             display_element: 'display_stage',
+             on_finish: function () {
+           //    jsPsych.data.displayData();
+               save_data_json();
+         //
+    });
+</script>
+</body>
+</html>
