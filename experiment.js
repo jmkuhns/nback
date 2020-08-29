@@ -25,6 +25,10 @@ var record_acc = function() {
 	current_trial = current_trial + 1
 }
 
+var randomDraw = function(lst) {
+	var index = Math.floor(Math.random() * (lst.length))
+	return lst[index]
+}
 
 /* ************************************ */
 /* Define experimental variables */
