@@ -54,10 +54,9 @@ var welcome = {
 
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
 var instructions_block = {
-	type: 'poldrack-instructions',
+	type: "html-keyboard-response",
 
-	stimulus:	'<div class = centerbox><p class = block-text>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the letter matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p class = block-text>You are supposed to press the left arrow key when the current number matches the letter that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other letter.</p><br><p>Press <strong>enter</strong> to continue</p></div>',
-	cont_key: [13],
+	stimulus:	'<p class = block-text>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the letter matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the letter that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other letter.</p><br><p>Press any key to continue</p></div>',
 	data: {
 		trial_id: "instruction"
 	},
@@ -66,23 +65,12 @@ var instructions_block = {
 
 
 var start_practice_block = {
-	type: 'poldrack-text',
-	text: '<div class = centerbox><p class = block-text>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key</p><p class = center-block-text>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press <strong>enter</strong> to begin.</p></div>',
-	cont_key: [13],
+	type: "html-keyboard-response",
+	text: '<p class = block-text>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p></div>',
 	data: {
 		trial_id: "instruction"
 	},
 	post_trial_gap: 1000
-};
-
-var start_test_block = {
-	type: 'poldrack-text',
-	data: {
-		trial_id: "test_intro"
-	},
-	text: '<div class = centerbox><p class = center-block-text>Starting a test block.</p><p class = center-block-text>Press <strong>enter</strong> to begin.</p></div>',
-	cont_key: [13],
-	timing_post_trial: 1000
 };
 
 
@@ -102,7 +90,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	var practice_block = {
 		type: 'poldrack-categorize',
 		is_html: true,
-		stimulus: '<div class = centerbox><div class = center-text>' + stim + '</div></div>',
+		stimulus: jsPsych.timelineVariable('stim'),,
 		key_answer: correct_response,
 		data: {
 			trial_id: "stim",
@@ -110,9 +98,9 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			stim: stim,
 			target: target
 		},
-		correct_text: '<div class = centerbox><div style="color:green;font-size:60px"; class = center-text>Correct!</div></div>',
-		incorrect_text: '<div class = centerbox><div style="color:red;font-size:60px"; class = center-text>Incorrect</div></div>',
-		timeout_message: '<div class = centerbox><div style="font-size:60px" class = center-text>Respond Faster!</div></div>',
+		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
+		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
 		timing_feedback_duration: 500,
 		show_stim_with_feedback: false,
 		choices: [37,39],
@@ -143,8 +131,7 @@ for (var b = 0; b < num_blocks; b++) {
 			}
 			var test_block = {
 				type: 'poldrack-single-stim',
-				is_html: true,
-				stimulus: '<div class = centerbox><div class = center-text>' + stim + '</div></div>',
+				stimulus: jsPsych.timelineVariable('stim'),
 				data: {
 					trial_id: "stim",
 					exp_stage: "test",
