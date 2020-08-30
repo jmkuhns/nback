@@ -35,12 +35,12 @@ var randomDraw = function(lst) {
 /* ************************************ */
 
 // task specific variables
-var current_trial = 0
-var numbers = '0123456789'
-var num_blocks = 6
-var num_trials = 20
-var num_practice_trials = 20
-var stims = [] //hold stims per block
+var current_trial = 0;
+var numbers = '0123456789';
+var num_blocks = 6;
+var num_trials = 20;
+var num_practice_trials = 20;
+var stims = []; //hold stims per block
 
 /* ************************************ */
 /* Set up jsPsych blocks */
@@ -71,7 +71,7 @@ var start_practice_block = {
 		trial_id: "instruction"
 	},
 	post_trial_gap: 1000
-};
+}
 
 
 //Setup 2-back practice
@@ -109,7 +109,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		timing_post_trial: 500
 	};
 	practice_trials.push(practice_block);
-};
+}
 
 //Set up experiment
 var n_back_experiment = [];
@@ -147,7 +147,7 @@ for (var b = 0; b < num_blocks; b++) {
 			};
 			n_back_experiment.push(test_block);
 		}
-};
+}
 var debrief = {
   type: "html-keyboard-response",
 	stimulus: "<p>Press any key to complete the experiment. Thank you!</p>"
