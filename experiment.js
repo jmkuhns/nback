@@ -56,7 +56,7 @@ var welcome = {
 var instructions_block = {
 	type: "html-keyboard-response",
 
-	stimulus:	'<p>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the letter matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the letter that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other letter.</p><br><p>Press any key to continue</p>',
+	stimulus:	'<p>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the number matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the number that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other number.</p><br><p>Press any key to continue</p>',
 	data: {
 		trial_id: "instruction"
 	},
