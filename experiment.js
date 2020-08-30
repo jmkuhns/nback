@@ -8,12 +8,12 @@ a match or not
 //Calculates whether the last trial was correct and records the accuracy in data object
 var record_acc = function() {
 	var global_trial = jsPsych.progress().current_trial_global
-	var stim = jsPsych.data.getData()[global_trial].stim.toLowerCase()
-	var target = jsPsych.data.getData()[global_trial].target.toLowerCase()
+	var stim = jsPsych.data.getData()[global_trial].stim
+	var target = jsPsych.data.getData()[global_trial].target
 	var key = jsPsych.data.getData()[global_trial].key_press
 	if (stim == target && key == 37) {
 		correct = true
-	} else if (stim != target && key == 40) {
+	} else if (stim != target && key == 39) {
 		correct = true
 	} else {
 		correct = false
@@ -38,8 +38,8 @@ var randomDraw = function(lst) {
 var current_trial = 0
 var numbers = '0123456789'
 var num_blocks = 6
-var num_trials = 50
-var num_practice_trials = 25
+var num_trials = 20
+var num_practice_trials = 20
 var stims = [] //hold stims per block
 
 /* ************************************ */
@@ -56,7 +56,7 @@ var welcome = {
 var instructions_block = {
 	type: "html-keyboard-response",
 
-	stimulus:	'<p class = block-text>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the letter matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the letter that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other letter.</p><br><p>Press any key to continue</p></div>',
+	stimulus:	'<p>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the letter matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the letter that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other letter.</p><br><p>Press any key to continue</p>',
 	data: {
 		trial_id: "instruction"
 	},
@@ -66,7 +66,7 @@ var instructions_block = {
 
 var start_practice_block = {
 	type: "html-keyboard-response",
-	text: '<p class = block-text>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p></div>',
+	text: '<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p>',
 	data: {
 		trial_id: "instruction"
 	},
