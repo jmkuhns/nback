@@ -90,7 +90,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	var practice_block = {
 		type: 'poldrack-categorize',
 		is_html: true,
-		stimulus: jsPsych.timelineVariable('stim'),,
+		stimulus: jsPsych.timelineVariable('stim'),
 		key_answer: correct_response,
 		data: {
 			trial_id: "stim",
