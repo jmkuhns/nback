@@ -120,7 +120,6 @@ n_back_experiment = n_back_experiment.concat(practice_trials);
 var delay = 2;
 
 for (var b = 0; b < num_blocks; b++) {
-		n_back_experiment.push(start_test_block);
 		var target = '';
 		stims = [];
 		for (var i = 0; i < num_trials; i++) {
