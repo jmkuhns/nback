@@ -75,7 +75,9 @@ var start_practice_block = {
 
 
 //Setup 2-back practice
-var practice_trials = [];
+var timeline = [];
+timeline.push(welcome, instructions_block);
+timeline.push(start_practice_block);
 for (var i = 0; i < (num_practice_trials); i++) {
 	var stim = randomDraw(numbers);
 	stims.push(stim);
@@ -88,8 +90,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		correct_response = 39;
 	}
 	var practice_block = {
-		type: 'poldrack-categorize',
-		is_html: true,
+		type: 'html-keyboard-response',
 		stimulus: jsPsych.timelineVariable('stim'),
 		key_answer: correct_response,
 		data: {
@@ -108,14 +109,13 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		timing_response: 2500,
 		timing_post_trial: 500
 	};
-	practice_trials.push(practice_block);
+	timeline.push(practice_block);
 }
 
 //Set up experiment
-var n_back_experiment = [];
-n_back_experiment.push(welcome, instructions_block);
-n_back_experiment.push(start_practice_block);
-n_back_experiment = n_back_experiment.concat(practice_trials);
+//var n_back_experiment = [];
+
+//n_back_experiment = n_back_experiment.concat(practice_trials);
 
 var delay = 2;
 
@@ -129,7 +129,7 @@ for (var b = 0; b < num_blocks; b++) {
 				target = stims[i - delay];
 			}
 			var test_block = {
-				type: 'poldrack-single-stim',
+				type: 'html-keyboard-response',
 				stimulus: jsPsych.timelineVariable('stim'),
 				data: {
 					trial_id: "stim",
@@ -144,7 +144,7 @@ for (var b = 0; b < num_blocks; b++) {
 				timing_post_trial: 0,
 				on_finish: record_acc
 			};
-			n_back_experiment.push(test_block);
+			timeline.push(test_block);
 		}
 }
 var debrief = {
@@ -152,4 +152,4 @@ var debrief = {
 	stimulus: "<p>Press any key to complete the experiment. Thank you!</p>"
 };
 
-n_back_experiment.push(debrief);
+timeline.push(debrief);
