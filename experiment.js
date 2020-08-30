@@ -77,15 +77,15 @@ var start_practice_block = {
 //Setup 2-back practice
 var practice_trials = [];
 for (var i = 0; i < (num_practice_trials); i++) {
-	var stim = randomDraw(numbers)
-	stims.push(stim)
+	var stim = randomDraw(numbers);
+	stims.push(stim);
 	if (i >= 2) {
-		target = stims[i - 2]
+		target = stims[i - 2];
 	}
 	if (stim == target) {
-		correct_response = 37
+		correct_response = 37;
 	} else {
-		correct_response = 39
+		correct_response = 39;
 	}
 	var practice_block = {
 		type: 'poldrack-categorize',
@@ -108,7 +108,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		timing_response: 2500,
 		timing_post_trial: 500
 	};
-	practice_trials.push(practice_block)
+	practice_trials.push(practice_block);
 };
 
 //Set up experiment
@@ -120,14 +120,14 @@ n_back_experiment = n_back_experiment.concat(practice_trials);
 var delay = 2;
 
 for (var b = 0; b < num_blocks; b++) {
-		n_back_experiment.push(start_test_block)
-		var target = ''
-		stims = []
+		n_back_experiment.push(start_test_block);
+		var target = '';
+		stims = [];
 		for (var i = 0; i < num_trials; i++) {
-			var stim = randomDraw(numbers)
-			stims.push(stim)
+			var stim = randomDraw(numbers);
+			stims.push(stim);
 			if (i >= delay) {
-				target = stims[i - delay]
+				target = stims[i - delay];
 			}
 			var test_block = {
 				type: 'poldrack-single-stim',
@@ -145,7 +145,7 @@ for (var b = 0; b < num_blocks; b++) {
 				timing_post_trial: 0,
 				on_finish: record_acc
 			};
-			n_back_experiment.push(test_block)
+			n_back_experiment.push(test_block);
 		}
 };
 var debrief = {
