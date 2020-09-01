@@ -40,7 +40,7 @@ var numbers = [0,1,2,3,4,5,6,7,8,9];
 var success = [0,1];
 var num_blocks = 6;
 var num_trials = 20;
-var num_practice_trials = 30;
+var num_practice_trials = 20;
 var stims = []; //hold stims per block
 var init = randomDraw(numbers);
 var success_test = [0,0];
@@ -119,12 +119,25 @@ var start_practice_block = {
 	post_trial_gap: 1000
 }
 
+var matt_time ={
+	type = "html-keyboard-response",
+	stimulus = '<p> Half of the trials match the stimulus N back (2 back). <br>A random sequence of digits that would be chosen anew on each block for each participant will be shown below. Below that sequence is a sequence of 0s and 1s, where a 1 indicates that the element in that sequence matches the element 2 back, and a 0 indicates otherwise. Because of randomization, occasionally a 0 will match the element 2 back, but I am working on a fix for that.<br>' +
+	stims_prac	+	'<br>' +
+	success_prac_init +
+	'<br>Reload page to get a sense of how the sequences will go. 25% may be a better option, with only 20 trials per block</p>',
+	choices: jsPsych.NO_KEYS
+}
+
 
 //Setup 2-back practice
 var timeline = [];
+timline.push(matt_time);
+
+/* temporarily commenting the rest out.
 timeline.push(welcome);
 timeline.push(instructions_block);
 timeline.push(start_practice_block);
+
 for (var i = 0; i < (num_practice_trials); i++) {
 
 
@@ -159,11 +172,11 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			target: target
 		},
 		timeline_variables: stims_prac,
-		/* correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		// /* correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
 		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
 		timing_feedback_duration: 500,
-		show_stim_with_feedback: false, */
+		show_stim_with_feedback: false,
 		choices: [37,39],
 		timing_stim: 500,
 		timing_response: 2500,
@@ -216,3 +229,4 @@ var debrief = {
 };
 
 timeline.push(debrief);
+*/
