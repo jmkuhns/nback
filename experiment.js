@@ -54,7 +54,8 @@ for (var i = 0; i <= 27; i++) {
 }
 
 var success_prac_draws = jsPsych.randomization.repeat(success_prac, 1);
-success_prac_init.concat(success_prac_draws);
+
+success_prac_init = success_prac_init.concat(success_prac_draws);
 
 stims_prac = [];
 
