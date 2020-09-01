@@ -85,7 +85,7 @@ var instructions_block = {
 var start_practice_block = {
 	type: "html-keyboard-response",
 	stimulus:
-	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p>',
+	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key.</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p>',
 	data: {
 		trial_id: "instruction"
 	},
@@ -128,6 +128,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			stim: stim,
 			target: target
 		},
+		timeline_variables: stim,
 		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
 		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
