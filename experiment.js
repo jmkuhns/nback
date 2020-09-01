@@ -41,7 +41,7 @@ var num_blocks = 6;
 var num_trials = 20;
 var num_practice_trials = 20;
 var stims = []; //hold stims per block
-var init = jsPsych.randomization.sampleWithoutReplacement(numbers, 5);
+var init = jsPsych.randomization.sampleWithoutReplacement(numbers, 4);
 /* ************************************ */
 /* Set up jsPsych blocks */
 /* ************************************ */
