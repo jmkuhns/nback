@@ -46,9 +46,9 @@ var init = randomDraw(numbers);
 var success_test = [0,0];
 var success_prac = [];
 var success_prac_init = [0,0];
-
-for (var i = 0; i <= 27; i++) {
-    if(i <12) {
+//27 for later
+for (var i = 0; i <= 17; i++) {
+    if(i <10) {
     success_prac.push(0)
 } else success_prac.push(1)
 }
@@ -119,9 +119,9 @@ var start_practice_block = {
 	post_trial_gap: 1000
 }
 
-var matt_time ={
-	type = "html-keyboard-response",
-	stimulus = '<p> Half of the trials match the stimulus N back (2 back). <br>A random sequence of digits that would be chosen anew on each block for each participant will be shown below. Below that sequence is a sequence of 0s and 1s, where a 1 indicates that the element in that sequence matches the element 2 back, and a 0 indicates otherwise. Because of randomization, occasionally a 0 will match the element 2 back, but I am working on a fix for that.<br>' +
+var matt_time = {
+	type: "html-keyboard-response",
+	stimulus: '<p> Half of the trials match the stimulus N back (2 back). <br>A random sequence of digits that would be chosen anew on each block for each participant will be shown below. Below that sequence is a sequence of 0s and 1s, where a 1 indicates that the element in that sequence matches the element 2 back, and a 0 indicates otherwise. Because of randomization, occasionally a 0 will match the element 2 back, but I am working on a fix for that.<br>' +
 	stims_prac	+	'<br>' +
 	success_prac_init +
 	'<br>Reload page to get a sense of how the sequences will go. 25% may be a better option, with only 20 trials per block</p>',
@@ -131,7 +131,7 @@ var matt_time ={
 
 //Setup 2-back practice
 var timeline = [];
-timline.push(matt_time);
+timeline.push(matt_time);
 
 /* temporarily commenting the rest out.
 timeline.push(welcome);
