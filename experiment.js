@@ -73,7 +73,8 @@ var welcome = {
 var instructions_block = {
 	type: "html-keyboard-response",
 
-	stimulus:	'<p>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the number matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the number that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other number.</p><br><p>Press any key to continue</p>',
+	stimulus:
+	'<p>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the number matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the number that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5 the right arrow key for every other number.</p><br><p>Press any key to continue</p>',
 	data: {
 		trial_id: "instruction"
 	},
@@ -83,7 +84,8 @@ var instructions_block = {
 
 var start_practice_block = {
 	type: "html-keyboard-response",
-	text: '<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p>',
+	stimulus:
+	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p>',
 	data: {
 		trial_id: "instruction"
 	},
@@ -126,11 +128,11 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			stim: stim,
 			target: target
 		},
-		/* correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
-		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>', */
-		/* timing_feedback_duration: 500,
-		show_stim_with_feedback: false, */
+		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
+		timing_feedback_duration: 500,
+		show_stim_with_feedback: false,
 		choices: [37,39],
 		timing_stim: 500,
 		timing_response: 2500,
