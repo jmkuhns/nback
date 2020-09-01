@@ -28,7 +28,7 @@ var record_acc = function() {
 var randomDraw = function(lst) {
 	var index = Math.floor(Math.random() * (lst.length))
 	return lst[index]
-}
+} // draws one number
 
 /* ************************************ */
 /* Define experimental variables */
@@ -37,11 +37,13 @@ var randomDraw = function(lst) {
 // task specific variables
 var current_trial = 0;
 var numbers = [0,1,2,3,4,5,6,7,8,9];
+var success = [0,1];
 var num_blocks = 6;
 var num_trials = 20;
-var num_practice_trials = 20;
+var num_practice_trials = 30;
 var stims = []; //hold stims per block
- var init = randomDraw(numbers);
+var init = randomDraw(numbers);
+var sample_prac = jsPsych.randomization.sampleWithReplacement(success, num_practice_trials);
 /* ************************************ */
 /* Set up jsPsych blocks */
 /* ************************************ */
@@ -50,7 +52,7 @@ var stims = []; //hold stims per block
 var welcome = {
   type: "html-keyboard-response",
   stimulus: 'Welcome to the experiment. Press any key to begin.' +
-	'<p>' + init + '</p>'
+	'<p>' + sample_prac + '</p>'
 };
 
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
@@ -79,12 +81,20 @@ var first_two_prac = jsPsych.randomization.sampleWithoutReplacement(numbers, 2);
 
 //Setup 2-back practice
 var timeline = [];
-timeline.push(welcome, instructions_block);
+timeline.push(welcome);
+timeline.push(instructions_block);
 timeline.push(start_practice_block);
 for (var i = 0; i < (num_practice_trials); i++) {
+
+	if (i < 2) {
 	var stim = randomDraw(numbers);
 	stims.push(stim);
+	}
 	if (i >= 2) {
+		if (sample.prac[i] == 1){
+					stims.push(stims[i-2])
+	}
+
 		target = stims[i - 2];
 	}
 	if (stim == target) {
