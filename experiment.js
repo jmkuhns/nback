@@ -62,7 +62,10 @@ for (var i = 0; i <= num_practice_trials; i++){
 	if (i < 2){
 		var stim = randomDraw(numbers);
 		stims_prac.push(stim);
-	} else {
+	} else if( success_prac_init[i] == 1){
+		var stim = stims_prac[i-2]
+		stims_prac.push(stim)
+	} else{
 		var stim = randomDraw(numbers);
 		stims_prac.push(stim);
 	}
