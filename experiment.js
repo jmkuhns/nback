@@ -56,10 +56,20 @@ for (var i = 0; i <= 27; i++) {
 var success_prac_draws = jsPsych.randomization.repeat(success_prac, 1);
 
 success_prac_init.push(success_prac_draws);
-
 stims_prac = [];
 
-for (var i = 0; i < num_practice_trials; i++){
+for (var i  = 0; i < num_practice_trials; i++){
+	stims_prac.push(randomDraw(numbers));
+}
+
+for (var i = 2; i <= stims_prac.length; i++){
+	if (success_prac_init[i] == 1) {
+		stims_prac[i] = stims_prac[i-2];
+	}
+}
+
+
+/*for (var i = 0; i < num_practice_trials; i++){
 	if (i < 2){
 		var stim = randomDraw(numbers);
 		stims_prac.push(stim);
@@ -71,7 +81,7 @@ for (var i = 0; i < num_practice_trials; i++){
 		stims_prac.push(stim);
 	}
 }
-
+*/
 
 /* ************************************ */
 /* Set up jsPsych blocks */
@@ -80,7 +90,7 @@ for (var i = 0; i < num_practice_trials; i++){
 /*define static blocks */
 var welcome = {
   type: "html-keyboard-response",
-  stimulus: 'Welcome to the experiment. Press any key to begin.'
+  stimulus: '<p>Welcome to the experiment. Press any key to begin.' + stims_prac '</p>'
 };
 
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
