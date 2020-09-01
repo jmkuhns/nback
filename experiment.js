@@ -120,7 +120,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	}
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: jsPsych.timelineVariable('stim'),
+		stimulus: jsPsych.timelineVariable('stimulus'),
 		key_answer: correct_response,
 		data: {
 			trial_id: "stim",
