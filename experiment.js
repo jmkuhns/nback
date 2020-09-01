@@ -50,7 +50,7 @@ var init = jsPsych.randomization.sampleWithoutReplacement(numbers, 5);
 var welcome = {
   type: "html-keyboard-response",
   stimulus: 'Welcome to the experiment. Press any key to begin.' +
-	'<p>'+ init + '</p>'
+	'<p>'+ init.toString() + '</p>'
 };
 
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
