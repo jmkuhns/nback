@@ -129,11 +129,11 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			target: target
 		},
 		timeline_variables: stim,
-		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		/* correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
 		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
 		timing_feedback_duration: 500,
-		show_stim_with_feedback: false,
+		show_stim_with_feedback: false, */
 		choices: [37,39],
 		timing_stim: 500,
 		timing_response: 2500,
