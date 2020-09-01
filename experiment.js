@@ -39,8 +39,8 @@ var current_trial = 0;
 var numbers = [0,1,2,3,4,5,6,7,8,9];
 var success = [0,1];
 var num_blocks = 6;
-var num_trials = 20-1;
-var num_practice_trials = 30-1;
+var num_trials = 20;
+var num_practice_trials = 30;
 var stims = []; //hold stims per block
 var init = randomDraw(numbers);
 var success_test = [0,0];
@@ -56,6 +56,17 @@ var success_prac_draws = jsPsych.randomization.repeat(success_prac, 1);
 
 success_prac_init.push(success_prac_draws);
 
+stims_prac = [];
+
+for (var i = 0; i <= num_practice_trials; i++){
+	if (i < 2){
+		var stim = randomDraw(numbers);
+		stims_prac.push(stim);
+	} else {
+		var stim = randomDraw(numbers);
+		stims_prac.push(stim);
+	}
+}
 
 
 
@@ -85,7 +96,7 @@ var instructions_block = {
 var start_practice_block = {
 	type: "html-keyboard-response",
 	stimulus:
-	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key.</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.'	+	current_trial	+
+	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key.</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.'	+	stims_prac	+
 	'</p>',
 	data: {
 		trial_id: "instruction"
@@ -100,6 +111,9 @@ timeline.push(welcome);
 timeline.push(instructions_block);
 timeline.push(start_practice_block);
 for (var i = 0; i < (num_practice_trials); i++) {
+
+
+
 
 	if (i < 2) {
 	var stim = randomDraw(numbers);
@@ -121,15 +135,15 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	}
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: "Running",
+		stimulus: jsPsych.timelineVariable('stims_prac'),
 		key_answer: correct_response,
 		data: {
 			trial_id: "stim",
 			exp_stage: "practice",
-			stim: stim,
+			stim: stims_prac,
 			target: target
 		},
-		timeline_variables: stim,
+		timeline_variables: stims_prac,
 		/* correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
 		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
