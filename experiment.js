@@ -46,6 +46,7 @@ var init = randomDraw(numbers);
 var success_test = [0,0];
 var success_prac = [];
 var success_prac_init = [0,0];
+
 for (var i = 0; i <= 27; i++) {
     if(i <12) {
     success_prac.push(0)
@@ -58,7 +59,7 @@ success_prac_init.push(success_prac_draws);
 
 stims_prac = [];
 
-for (var i = 0; i <= num_practice_trials; i++){
+for (var i = 0; i < num_practice_trials; i++){
 	if (i < 2){
 		var stim = randomDraw(numbers);
 		stims_prac.push(stim);
