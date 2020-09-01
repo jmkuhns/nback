@@ -41,7 +41,7 @@ var num_blocks = 6;
 var num_trials = 20;
 var num_practice_trials = 20;
 var stims = []; //hold stims per block
-
+var init = jsPsych.randomization.sampleWithoutReplacement(numbers, 5);
 /* ************************************ */
 /* Set up jsPsych blocks */
 /* ************************************ */
@@ -49,7 +49,8 @@ var stims = []; //hold stims per block
 /*define static blocks */
 var welcome = {
   type: "html-keyboard-response",
-  stimulus: "Welcome to the experiment. Press any key to begin."
+  stimulus: 'Welcome to the experiment. Press any key to begin.' +
+	'<p>'+ init + '</p>'
 };
 
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
@@ -119,9 +120,12 @@ for (var i = 0; i < (num_practice_trials); i++) {
 
 var delay = 2;
 
+var first_two = jsPsych.randomization.sampleWithoutReplacement(numbers, 2)
+
+
 for (var b = 0; b < num_blocks; b++) {
 		var target = '';
-		stims = [];
+		stims = [first_two];
 		for (var i = 0; i < num_trials; i++) {
 			var stim = randomDraw(numbers);
 			stims.push(stim);
