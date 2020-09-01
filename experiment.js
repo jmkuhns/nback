@@ -102,10 +102,15 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	if (i < 2) {
 	var stim = randomDraw(numbers);
 	stims.push(stim);
-	}
-	if (i >= 2) {
-
-		target = stims[i - 2];
+	} else if (i >= 2) {
+			if (success_prac_init[i] == 1){
+				var stim = stims[i-2];
+				target = stims[i-2];
+			} else{
+				var stim = randomDraw(numbers);
+				stims.push(stim);
+				target = stims[i - 2];
+			}
 	}
 	if (stim == target) {
 		correct_response = 37;
