@@ -66,8 +66,7 @@ success_prac_init.push(success_prac_draws);
 /*define static blocks */
 var welcome = {
   type: "html-keyboard-response",
-  stimulus: 'Welcome to the experiment. Press any key to begin.' +
-	'<p>' + success_prac_init + '</p>'
+  stimulus: 'Welcome to the experiment. Press any key to begin.'
 };
 
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
@@ -127,11 +126,11 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			stim: stim,
 			target: target
 		},
-		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		/* correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
-		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
-		timing_feedback_duration: 500,
-		show_stim_with_feedback: false,
+		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>', */
+		/* timing_feedback_duration: 500,
+		show_stim_with_feedback: false, */
 		choices: [37,39],
 		timing_stim: 500,
 		timing_response: 2500,
