@@ -48,7 +48,7 @@ var success_prac = [];
 var success_prac_init = [0,0];
 //27 for later
 for (var i = 0; i <= 17; i++) {
-	    if(i <10) {
+	    if(i <8) {
     success_prac.push(0)
 } else success_prac.push(1)
 }
