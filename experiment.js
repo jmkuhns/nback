@@ -36,12 +36,12 @@ var randomDraw = function(lst) {
 
 // task specific variables
 var current_trial = 0;
-var numbers = '0123456789';
+var numbers = [0,1,2,3,4,5,6,7,8,9];
 var num_blocks = 6;
 var num_trials = 20;
 var num_practice_trials = 20;
 var stims = []; //hold stims per block
-var init = jsPsych.randomization.sampleWithoutReplacement(numbers, 12);
+var init = jsPsych.randomization.sampleWithoutReplacement(numbers, 5);
 /* ************************************ */
 /* Set up jsPsych blocks */
 /* ************************************ */
