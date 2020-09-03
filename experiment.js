@@ -69,8 +69,8 @@ for (var i = 2; i <= stims_prac.length; i++){
 	}
 	if (success_prac_init[i] == 0){
 		if( stims_prac[i] == stims_prac[i-2]){
-			let x = numbers.indexOf(stims_prac[i]);
-			let numb_minus = numbers.splice(x,1);
+			var x = numbers.indexOf(stims_prac[i]);
+			var numb_minus = numbers.splice(x,1);
 			stims_prac[i] = randomDraw(numb_minus);
 		}
 	}
