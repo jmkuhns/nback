@@ -74,8 +74,8 @@ success_prac_init = success_prac_init.concat(success_prac_draws);
 
 success_prac_init_25 = success_prac_init_25.concat(success_prac_draws_25);
 
-stims_prac = [];
-stims_prac_25 = [];
+var stims_prac = [];
+var stims_prac_25 = [];
 
 for (var i  = 0; i < num_practice_trials; i++){
 	stims_prac.push(randomDraw(numbers));
