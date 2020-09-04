@@ -43,7 +43,7 @@ var num_blocks = 6;
 var num_trials = 20;
 var num_practice_trials = 20;
 var stims = []; //hold stims per block
-var init = randomDraw(numbers);
+//var init = randomDraw(numbers);
 var success_test = [0,0];
 var success_prac = [];
 var success_prac_init = [0,0];
@@ -79,6 +79,9 @@ var stims_prac_25 = [];
 
 for (var i  = 0; i < num_practice_trials; i++){
 	stims_prac.push(randomDraw(numbers));
+
+}
+for (var i  = 0; i < num_practice_trials; i++){
 	stims_prac_25.push(randomDraw(numbers));
 }
 
@@ -155,9 +158,9 @@ var matt_time = {
 	stimulus: '<p> Half of the trials match the stimulus N back (2 back). <br>A random sequence of digits that would be chosen anew on each block for each participant will be shown below. Below that sequence is a sequence of 0s and 1s, where a 1 indicates that the element in that sequence matches the element 2 back, and a 0 indicates otherwise. Because of randomization, occasionally a 0 will match the element 2 back, but I am working on a fix for that.<br>' +
 	stims_prac	+	'<br>' +
 	success_prac_init +
-	//'</p><br><p>25% below:<br>'
-	//stims_prac_25	+	'<br>' +
-	//success_prac_init_25 +
+	'<br></p><p>25% below<br>'
+	stims_prac_25	+	'<br>' +
+	success_prac_init_25 +
 	'<br>Reload page to get a sense of how the sequences will go.</p>',
 	choices: jsPsych.NO_KEYS
 }
