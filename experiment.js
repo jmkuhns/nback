@@ -49,33 +49,55 @@ var success_prac_init = [0,0];
 //27 for later
 for (var i = 0; i <= 17; i++) {
 	    if(i <8) {
-    success_prac.push(0)
-} else success_prac.push(1)
+    success_prac.push(0);
+} else success_prac.push(1);
 }
+
+var success_prac_25 = [];
+var success_prac_init_25 = [];
+for (var i = 0; i < 18; i++) {
+			if(i < 13){
+				success_prac_25.push(0);
+			} else success_prac_25.push(1);
+
+}
+
 
 var success_prac_draws = jsPsych.randomization.repeat(success_prac, 1);
 
+var success_prac_draws_25 = jsPsych.randomization.repeat(success_prac_25, 1);
+
+
 success_prac_init = success_prac_init.concat(success_prac_draws);
 
+success_prac_init_25 = success_prac_init_25.concat(success_prac_draws_25);
+
 stims_prac = [];
+stims_prac_25 = [];
 
 for (var i  = 0; i < num_practice_trials; i++){
 	stims_prac.push(randomDraw(numbers));
+	stims_prac_25.push(randomDraw(numbers));
 }
 
 for (var i = 2; i <= stims_prac.length; i++){
 	if (success_prac_init[i] == 1) {
 		stims_prac[i] = stims_prac[i-2];
 	}
-	if (success_prac_init[i] == 0){
+/*	if (success_prac_init[i] == 0){
 		if( stims_prac[i] == stims_prac[i-2]){
 			var x = numbers.indexOf(stims_prac[i]);
 			var numb_minus = numbers.splice(x,1);
 			stims_prac[i] = randomDraw(numb_minus);
 		}
-	}
+	} */
 }
 
+for (var i = 2; i <= stims_prac_25.length; i++) {
+		if (success_prac_init_25[i] == 1) {
+			stims_prac_25[i] = stims_prac_25[i-2];
+		}
+}
 
 /*for (var i = 0; i < num_practice_trials; i++){
 	if (i < 2){
@@ -131,7 +153,10 @@ var matt_time = {
 	stimulus: '<p> Half of the trials match the stimulus N back (2 back). <br>A random sequence of digits that would be chosen anew on each block for each participant will be shown below. Below that sequence is a sequence of 0s and 1s, where a 1 indicates that the element in that sequence matches the element 2 back, and a 0 indicates otherwise. Because of randomization, occasionally a 0 will match the element 2 back, but I am working on a fix for that.<br>' +
 	stims_prac	+	'<br>' +
 	success_prac_init +
-	'<br>Reload page to get a sense of how the sequences will go. 25% may be a better option, with only 20 trials per block</p>',
+	'</p><br><p>25% below:<br>'
+	stims_prac_25	+	'<br>' +
+	success_prac_init_25 +
+	'<br>Reload page to get a sense of how the sequences will go.</p>',
 	choices: jsPsych.NO_KEYS
 }
 
