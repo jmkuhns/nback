@@ -34,6 +34,7 @@ var randomDraw = function(lst) {
 /* Define experimental variables */
 /* ************************************ */
 
+var timeline = [];
 // task specific variables
 var current_trial = 0;
 var numbers = [1,2,3,4,5,6,7,8,9];
@@ -46,19 +47,20 @@ var init = randomDraw(numbers);
 var success_test = [0,0];
 var success_prac = [];
 var success_prac_init = [0,0];
+
 //27 for later
 for (var i = 0; i <= 17; i++) {
 	    if(i <8) {
-    success_prac.push(0);
-} else success_prac.push(1);
+    success_prac.push(0)
+} else success_prac.push(1)
 }
 
 var success_prac_25 = [];
 var success_prac_init_25 = [];
-for (var i = 0; i < 18; i++) {
+for (var i = 0; i <= 17; i++) {
 			if(i < 13){
-				success_prac_25.push(0);
-			} else success_prac_25.push(1);
+				success_prac_25.push(0)
+			} else success_prac_25.push(1)
 
 }
 
@@ -162,7 +164,7 @@ var matt_time = {
 
 
 //Setup 2-back practice
-var timeline = [];
+
 timeline.push(matt_time);
 
 /* temporarily commenting the rest out.
