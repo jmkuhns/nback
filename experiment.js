@@ -56,7 +56,7 @@ for (var i = 0; i <= 17; i++) {
 }
 
 var success_prac_25 = [];
-var success_prac_init_25 = [];
+var success_prac_init_25 = [0, 0];
 for (var i = 0; i <= 17; i++) {
 			if(i < 13){
 				success_prac_25.push(0)
