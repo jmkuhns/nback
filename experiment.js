@@ -156,8 +156,8 @@ var matt_time = {
 	stims_prac	+	'<br>' +
 	success_prac_init +
 	'</p><br><p>25% below:<br>'
-	stims_prac_25	+	'<br>' +
-	success_prac_init_25 +
+	//stims_prac_25	+	'<br>' +
+	//success_prac_init_25 +
 	'<br>Reload page to get a sense of how the sequences will go.</p>',
 	choices: jsPsych.NO_KEYS
 }
