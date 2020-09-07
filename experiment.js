@@ -82,8 +82,14 @@ for (var i = 2; i <= stims_prac.length; i++) {
 		}
 	}
 }
-
-
+var correct_responses = [];
+for (i = 0; i < success_prac_init.length; i++){
+	if (success_prac_init[i] == 1){
+		correct_responses.push(37);
+	} else {
+		correct_responses.push(39);
+	}
+}
 
 /* ************************************ */
 /* Set up jsPsych blocks */
@@ -112,7 +118,8 @@ var start_practice_block = {
 	type: "html-keyboard-response",
 	stimulus:
 	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.<br>' + stims_prac	+	'<br>' +
-	success_prac_init,
+	success_prac_init + '<br>'+
+	correct_responses + '</p>',
 	data: {
 		trial_id: "instruction"
 	},
@@ -136,9 +143,9 @@ var feedback = {
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     if(last_trial_correct){
-      return "<p>Correct! " + correct_response + " </p>";
+      return "<p>Correct!</p>";
     } else {
-      return "<p>incobnjhgbn. "+ correct_response + " </p>"
+      return "<p>incobnjhgbn.</p>"
     }
   },
 	trial_duration: 500
@@ -158,6 +165,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		correct_response = 39;
 	}
 	var stim = stims_prac[i];
+	var correct_response = correct_responses[i];
 	var practice_block = {
 		type: 'html-keyboard-response',
 		stimulus: '<p style="font-size:80px";>'+stim+'</p>',
