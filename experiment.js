@@ -164,7 +164,8 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			trial_id: "stim",
 			exp_stage: "practice",
 			stim: stims_prac,
-			target: target
+			target: target,
+			corr_resp: correct_response
 		},
 		//correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		//incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
@@ -176,24 +177,34 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		trial_duration: 3000,
 		response_ends_trial: false,
 		on_finish: function(data){
+			if (data.key_press == data.corr_resp){
+				data.accuracy = 1;
 
-			if(data.key_press == correct_response){
-				data.correct = true;
-			} else{
-				data.correct = false;
-			}
+			}else {
+					data.accuracy = 0;
+				}
+
+
+		/*	if (data.key_press == 39){
+				if( correct_response == 39){
+					data.correct = true;
+				} else {
+					data.correct = false;
+				}
+			} */
 
   	}
 	};
 
 	var feedback = {
 		  type: 'html-keyboard-response',
+			trial_id: "feedback",
 		  stimulus: function(){
-		    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
-		    if(last_trial_correct){
-		      return "<p>Correct! " + i + "</p>";
+		    var last_trial_correct = jsPsych.data.get().last(1).values()[0].accuracy;
+		    if(last_trial_correct == 1){
+		      return '<p style="color:green;font-size:60px";>Correct! ' + i + "</p>";
 		    } else {
-		      return "<p>incor inside the loop. " + i + "</p>"
+		      return '<p style="color:red;font-size:60px";>incorrect. ' + i + "</p>";
 		    }
 		  },
 			trial_duration: 500
