@@ -156,10 +156,10 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		target = stims_prac[i];
 	}
 
-	if (stims_prac[i] == target) {
-			var	correct_response = 39;
-	} else {
+	if (success_prac_init[i] == 1) {
 			var	correct_response = 37;
+	} else {
+			var	correct_response = 39;
 	}
 	var stim = stims_prac[i];
 	var practice_block = {
