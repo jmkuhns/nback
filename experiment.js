@@ -318,7 +318,7 @@ for (var b = 1; b < num_blocks+1; b++) {
 			timeline.push(test_brief, test_block);
 		}
 }
-*/
+
 var debrief = {
   type: "html-keyboard-response",
 	stimulus: "<p>Press any key to complete the experiment. Thank you!</p>"
