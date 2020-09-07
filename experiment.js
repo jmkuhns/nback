@@ -157,9 +157,9 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	}
 
 	if (stims_prac[i] == target) {
-		correct_response = 39;
+			var	correct_response = 39;
 	} else {
-		correct_response = 37;
+			var	correct_response = 37;
 	}
 	var stim = stims_prac[i];
 	var practice_block = {
