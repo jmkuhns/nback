@@ -161,17 +161,16 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	} else {
 			var	correct_response = 39;
 	}
-	//var stim = stims_prac[i];
+	var stim = stims_prac[i];
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: jsPsych.timelineVariable('stims_prac'),
+		stimulus: '<p style="font-size:80px";>'+stim+'</p>',
 		data: {
 			trial_id: "stim",
 			exp_stage: "practice",
 			stim: stims_prac,
 			target: target
 		},
-		timeline_variables: stims_prac,
 		//correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		//incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
 		//timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
