@@ -93,9 +93,9 @@ for (var i = 2; i <= stims_prac.length; i++){
 for (var i = 2; i <= stims_prac.length; i++) {
 	if (success_prac_init[i] == 0){
 		if( stims_prac[i] == stims_prac[i-2]){
-			var x = numbers.indexOf(stims_prac[i]);
-			var numb_minus = numbers.splice(x,1);
-			stims_prac[i] = randomDraw(numb_minus);
+			numbers.splice(i, 1);
+			stims_prac[i] = randomDraw(numbers);
+			var numbers = [1,2,3,4,5,6,7,8,9];
 		}
 	}
 }
