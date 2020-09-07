@@ -143,9 +143,9 @@ var feedback = {
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     if(last_trial_correct){
-      return "<p>Correct!</p>";
+      return "<p>Correct!" + i + "</p>";
     } else {
-      return "<p>incobnjhgbn.</p>"
+      return "<p>incobnjhgbn." + i + "</p>"
     }
   },
 	trial_duration: 500
