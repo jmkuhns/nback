@@ -159,16 +159,16 @@ timeline.push(start_practice_block);
 for (var i = 0; i < (num_practice_trials); i++) {
 	if (success_prac_init[i] == 1){
 		target = stims_prac[i-2];
-		correct_response = 37;
+		//correct_response = 37;
 	} else {
 		target = stims_prac[i];
-		correct_response = 39;
+		//correct_response = 39;
 	}
 	var stim = stims_prac[i];
 	var correct_response = correct_responses[i];
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: '<p style="font-size:80px";>'+stim+'</p>',
+		stimulus: '<p style="font-size:80px";>'+stim+ ' '+ i+'</p>',
 		data: {
 			trial_id: "stim",
 			exp_stage: "practice",
