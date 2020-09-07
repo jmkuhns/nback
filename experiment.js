@@ -156,18 +156,6 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	var stim = stims_prac[i];
 	var correct_response = correct_responses[i];
 
-	var feedback = {
-	  type: 'html-keyboard-response',
-	  stimulus: function(){
-	    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
-	    if(last_trial_correct){
-	      return "<p>Correct!" + i + "</p>";
-	    } else {
-	      return "<p>incor inside the loop." + i + "</p>"
-	    }
-	  },
-		trial_duration: 500
-	}
 
 	var practice_block = {
 		type: 'html-keyboard-response',
@@ -197,6 +185,19 @@ for (var i = 0; i < (num_practice_trials); i++) {
 
   	}
 	};
+
+	var feedback = {
+		  type: 'html-keyboard-response',
+		  stimulus: function(){
+		    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+		    if(last_trial_correct){
+		      return "<p>Correct! " + i + "</p>";
+		    } else {
+		      return "<p>incor inside the loop. " + i + "</p>"
+		    }
+		  },
+			trial_duration: 500
+		};
 	timeline.push(practice_block, feedback);
 }
 
