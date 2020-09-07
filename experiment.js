@@ -167,11 +167,6 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			target: target,
 			corr_resp: correct_response
 		},
-		//correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
-		//incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
-		//timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
-		//timing_feedback_duration: 500,
-		//show_stim_with_feedback: false,
 		choices: [37,39],
 		stimulus_duration: 500,
 		trial_duration: 3000,
@@ -218,58 +213,109 @@ for (var i = 0; i < (num_practice_trials); i++) {
 
 //n_back_experiment = n_back_experiment.concat(practice_trials);
 
+var b = 1;
 var test_brief = {
   type: "html-keyboard-response",
 	data: "instr",
-	stimulus: "<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block 1. </p>"
+	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block' + b + '</p>',
+	on_load: function(){
+		var numbers = [1,2,3,4,5,6,7,8,9];
+		var num_trials = 20;
+//		var num_practice_trials = 20;
+		var stims = []; //hold stims per block
+		//var init = randomDraw(numbers);
+		var success_test = [0,0];
+		var success = [];
+//		var success_prac = [];
+//		var success_prac_init = [0,0];
+
+		for (var i = 0; i <= 17; i++) {
+			    if(i <8) {
+		    success.push(0)
+		} else success.push(1)
+		}
+
+		var success_draws = jsPsych.randomization.repeat(success, 1);
+
+		success_test = success_test.concat(success_draws);
+
+
+		for (var i  = 0; i < num_trials; i++){
+			stims.push(randomDraw(numbers));
+		}
+
+		for (var i = 2; i <= stims.length; i++){
+			if (success_test[i] == 1) {
+				stims[i] = stims[i-2];
+			}
+		}
+
+		for (var i = 2; i <= stims.length; i++) {
+			if (success_test[i] == 0){
+				if( stims[i] == stims[i-2]){
+					numbers.splice(i, 1);
+					stims[i] = randomDraw(numbers);
+					var numbers = [1,2,3,4,5,6,7,8,9];
+				}
+			}
+		}
+
+		var correct_responses = [];
+		for (i = 0; i < success_test.length; i++){
+			if (success_test[i] == 1){
+				correct_responses.push(37);
+			} else {
+				correct_responses.push(39);
+			}
+		}
+
+
+
+	}
 };
 
 
 
-var delay = 2;
-/*
-for (var i = 2; i <= stims.length; i++){
-	if (success_prac_init[i] == 1) {
-		stims_prac[i] = stims_prac[i-2];
-	}
-}
+for (var b = 1; b < num_blocks+1; b++) {
+		//var target = '';
 
-for (var i = 2; i <= stims.length; i++) {
-	if (success_prac_init[i] == 0){
-		if( stims_prac[i] == stims_prac[i-2]){
-			numbers.splice(i, 1);
-			stims_prac[i] = randomDraw(numbers);
-			var numbers = [1,2,3,4,5,6,7,8,9];
-		}
-	}
-} */
-/*
-for (var b = 0; b < num_blocks; b++) {
-		var target = '';
-		stims = [];
 		for (var i = 0; i < num_trials; i++) {
-			var stim = randomDraw(numbers);
-			stims.push(stim);
-			if (i >= delay) {
-				target = stims[i - delay];
+			if (success_test[i] == 1){
+				target = stims[i-2];
+				//correct_response = 37;
+			} else {
+				target = stims[i];
+				//correct_response = 39;
 			}
+			var stim = stims[i];
+			var correct_response = correct_responses[i];
+
 			var test_block = {
 				type: 'html-keyboard-response',
-				stimulus: jsPsych.timelineVariable('stim'),
+				stimulus: stim,
 				data: {
 					trial_id: "stim",
 					exp_stage: "test",
-					load: delay,
 					stim: stim,
 					target: target
 				},
 				choices: [37,39],
-				timing_stim: 500,
-				timing_response: 2500,
-				timing_post_trial: 0
+				stimulus_duration: 500,
+				trial_duration: 3000,
+				response_ends_trial: false,
+				on_finish: function(data){
+
+						if (data.key_press == data.corr_resp){
+							data.accuracy = 1;
+
+						}else {
+								data.accuracy = 0;
+							}
+
+				}
 
 			};
-			timeline.push(test_block);
+			timeline.push(test_brief, test_block);
 		}
 }
 */
