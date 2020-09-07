@@ -195,9 +195,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		choices: [37,39],
 		stimulus_duration: 500,
 		trial_duration: 3000,
-		on_finish: function(data){
-			record_acc();
-		}
+		on_finish: record_acc
 	};
 	timeline.push(practice_block, feedback);
 }
