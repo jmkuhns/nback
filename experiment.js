@@ -138,7 +138,7 @@ var feedback = {
     if(last_trial_correct){
       return "<p>Correct! " + correct_response + " </p>";
     } else {
-      return "<p>inco. "+ correct_response + " </p>"
+      return "<p>incobnjhgbn. "+ correct_response + " </p>"
     }
   },
 	trial_duration: 500
@@ -152,14 +152,10 @@ timeline.push(start_practice_block);
 for (var i = 0; i < (num_practice_trials); i++) {
 	if (success_prac_init[i] == 1){
 		target = stims_prac[i-2];
+		correct_response = 37;
 	} else {
 		target = stims_prac[i];
-	}
-
-	if (success_prac_init[i] == 1) {
-			var	correct_response = 37;
-	} else {
-			var	correct_response = 39;
+		correct_response = 39;
 	}
 	var stim = stims_prac[i];
 	var practice_block = {
@@ -182,20 +178,10 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		response_ends_trial: false,
 		on_finish: function(data){
 
-			if (data.key_press == 37){
-				if (correct_response == 37){
-					data.correct = true;
-				} else {
-					data.correct = false;
-				}
-			}
-
-			if (data.key_press == 39){
-				if( correct_response == 39){
-					data.correct = true;
-				} else {
-					data.correct = false;
-				}
+			if(data.key_press == correct_response){
+				data.correct = true;
+			} else{
+				data.correct = false;
 			}
 
   	}
