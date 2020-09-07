@@ -138,7 +138,7 @@ var feedback = {
     if(last_trial_correct){
       return "<p>Correct!</p>";
     } else {
-      return "<p>Incorrect.</p>"
+      return "<p>boing.</p>"
     }
   },
 	trial_duration: 500
