@@ -143,6 +143,7 @@ timeline.push(welcome);
 timeline.push(instructions_block);
 timeline.push(start_practice_block);
 
+/*
 for (var i = 0; i < (num_practice_trials); i++) {
 	if (success_prac_init[i] == 1){
 		target = stims_prac[i-2];
@@ -205,7 +206,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		};
 	timeline.push(practice_block, feedback);
 }
-
+*/
 
 //Set up experiment
 //var n_back_experiment = [];
