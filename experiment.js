@@ -136,9 +136,9 @@ var feedback = {
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     if(last_trial_correct){
-      return "<p>Correct! "+correct_response+"  "+ stim +" </p>";
+      return "<p>Correct! " + correct_response+ " </p>";
     } else {
-      return "<p>boing. "+correct_response +"  "+ stim +" </p>"
+      return "<p>spew. "+correct_response + " </p>"
     }
   },
 	trial_duration: 500
@@ -161,14 +161,14 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	} else {
 			var	correct_response = 39;
 	}
-	var stim = stims_prac[i];
+	//var stim = stims_prac[i];
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: stim,
+		stimulus: stims_prac,
 		data: {
 			trial_id: "stim",
 			exp_stage: "practice",
-			stim: stim,
+			stim: stims_prac,
 			target: target
 		},
 		//timeline_variables: stim,
