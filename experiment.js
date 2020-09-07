@@ -159,7 +159,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: '<p style="font-size:80px";>'+stim+ ' '+ i+'</p>',
+		stimulus: '<p style="font-size:60px";>' +stim +'</p>',
 		data: {
 			trial_id: "stim",
 			exp_stage: "practice",
@@ -202,9 +202,9 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		  stimulus: function(){
 		    var last_trial_correct = jsPsych.data.get().last(1).values()[0].accuracy;
 		    if(last_trial_correct == 1){
-		      return '<p style="color:green;font-size:60px";>Correct! ' + i + "</p>";
+		      return '<p style="color:green;font-size:60px";>Correct! ' </p>';
 		    } else {
-		      return '<p style="color:red;font-size:60px";>incorrect. ' + i + "</p>";
+		      return '<p style="color:red;font-size:60px";>incorrect. </p>';
 		    }
 		  },
 			trial_duration: 500
@@ -217,6 +217,14 @@ for (var i = 0; i < (num_practice_trials); i++) {
 //var n_back_experiment = [];
 
 //n_back_experiment = n_back_experiment.concat(practice_trials);
+
+var test_brief = {
+  type: "html-keyboard-response",
+	data: "instr",
+	stimulus: "<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block 1. </p>"
+};
+
+
 
 var delay = 2;
 /*
