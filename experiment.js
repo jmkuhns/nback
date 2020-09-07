@@ -172,7 +172,7 @@ var start_practice_block = {
 
 // timeline.push(matt_time);
 
-/* temporarily commenting the rest out.
+ temporarily commenting the rest out.
 timeline.push(welcome);
 timeline.push(instructions_block);
 timeline.push(start_practice_block);
@@ -228,7 +228,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 //var n_back_experiment = [];
 
 //n_back_experiment = n_back_experiment.concat(practice_trials);
-
+/*
 var delay = 2;
 
 var first_two = jsPsych.randomization.sampleWithoutReplacement(numbers, 2);
@@ -262,10 +262,10 @@ for (var b = 0; b < num_blocks; b++) {
 			timeline.push(test_block);
 		}
 }
+*/
 var debrief = {
   type: "html-keyboard-response",
 	stimulus: "<p>Press any key to complete the experiment. Thank you!</p>"
 };
 
 timeline.push(debrief);
-*/
