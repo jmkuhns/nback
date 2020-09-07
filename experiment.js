@@ -100,25 +100,7 @@ for (var i = 2; i <= stims_prac.length; i++) {
 	}
 }
 
-//for (var i = 2; i <= stims_prac_25.length; i++) {
-//		if (success_prac_init_25[i] == 1) {
-//			stims_prac_25[i] = stims_prac_25[i-2];
-//		}
-//}
 
-/*for (var i = 0; i < num_practice_trials; i++){
-	if (i < 2){
-		var stim = randomDraw(numbers);
-		stims_prac.push(stim);
-	} else if( success_prac_init[i] == 1){
-		var stim = stims_prac[i-2]
-		stims_prac.push(stim)
-	} else{
-		var stim = randomDraw(numbers);
-		stims_prac.push(stim);
-	}
-}
-*/
 
 /* ************************************ */
 /* Set up jsPsych blocks */
@@ -166,7 +148,17 @@ var start_practice_block = {
 	choices: jsPsych.NO_KEYS
 }
 */
-
+var feedback = {
+  type: 'html-keyboard-response',
+  stimulus: function(){
+    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+    if(last_trial_correct){
+      return "<p>Correct!</p>";
+    } else {
+      return "<p>Wrong.</p>"
+    }
+  }
+}
 //Setup 2-back practice
 
 timeline.push(welcome);
@@ -174,28 +166,20 @@ timeline.push(instructions_block);
 timeline.push(start_practice_block);
 
 for (var i = 0; i < (num_practice_trials); i++) {
-	if (i < 2) {
-	var stim = randomDraw(numbers);
-	stims.push(stim);
-	} else if (i >= 2) {
-			if (success_prac_init[i] == 1){
-				var stim = stims[i-2];
-				target = stims[i-2];
-			} else{
-				var stim = randomDraw(numbers);
-				stims.push(stim);
-				target = stims[i - 2];
-			}
-	}
-	if (stim == target) {
-		correct_response = 37;
+	if (success_prac_init[i] == 1){
+		target = stims_prac[i-2];
 	} else {
+		target = stims_prac[i];
+	}
+
+	if (stims_prac[i] == target) {
 		correct_response = 39;
+	} else {
+		correct_response = 37;
 	}
 	var practice_block = {
 		type: 'html-keyboard-response',
 		stimulus: jsPsych.timelineVariable('stims_prac'),
-		key_answer: correct_response,
 		data: {
 			trial_id: "stim",
 			exp_stage: "practice",
@@ -203,61 +187,22 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			target: target
 		},
 		timeline_variables: stims_prac,
-		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
-		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
-		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
-		timing_feedback_duration: 500,
-		show_stim_with_feedback: false,
+		//correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		//incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
+		//timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
+		//timing_feedback_duration: 500,
+		//show_stim_with_feedback: false,
 		choices: [37,39],
-		timing_stim: 500,
-		timing_response: 2500,
-		timing_post_trial: 500
+		stimulus_duration: 500,
+		trial_duration: 3000,
+		on_finish: function(data){
+			record_acc();
+		}
 	};
-	timeline.push(practice_block);
+	timeline.push(practice_block, feedback);
 }
 
-for (var i = 0; i < (trials); i++) {
-	if (i < 2) {
-	var stim = randomDraw(numbers);
-	stims.push(stim);
-	} else if (i >= 2) {
-			if (success_prac_init[i] == 1){
-				var stim = stims[i-2];
-				target = stims[i-2];
-			} else{
-				var stim = randomDraw(numbers);
-				stims.push(stim);
-				target = stims[i - 2];
-			}
-	}
-	if (stim == target) {
-		correct_response = 37;
-	} else {
-		correct_response = 39;
-	}
-	var practice_block = {
-		type: 'html-keyboard-response',
-		stimulus: jsPsych.timelineVariable('stims_prac'),
-		key_answer: correct_response,
-		data: {
-			trial_id: "stim",
-			exp_stage: "practice",
-			stim: stims_prac,
-			target: target
-		},
-		timeline_variables: stims_prac,
-		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
-		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
-		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
-		timing_feedback_duration: 500,
-		show_stim_with_feedback: false,
-		choices: [37,39],
-		timing_stim: 500,
-		timing_response: 2500,
-		timing_post_trial: 500
-	};
-	timeline.push(practice_block);
-}
+
 //Set up experiment
 //var n_back_experiment = [];
 
