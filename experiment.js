@@ -180,7 +180,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		choices: [37,39],
 		stimulus_duration: 500,
 		trial_duration: 3000,
-		response_ends_trial = false;
+		response_ends_trial = false,
 		on_finish: function(data){
     if(data.key_press == correct_response){// 70 is the numeric code for f
       data.correct = true; // can add property correct by modify data object directly
