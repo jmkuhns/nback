@@ -138,18 +138,7 @@ var start_practice_block = {
 	choices: jsPsych.NO_KEYS
 }
 */
-var feedback = {
-  type: 'html-keyboard-response',
-  stimulus: function(){
-    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
-    if(last_trial_correct){
-      return "<p>Correct!" + i + "</p>";
-    } else {
-      return "<p>incobnjhgbn." + i + "</p>"
-    }
-  },
-	trial_duration: 500
-}
+
 //Setup 2-back practice
 
 timeline.push(welcome);
@@ -166,6 +155,20 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	}
 	var stim = stims_prac[i];
 	var correct_response = correct_responses[i];
+
+	var feedback = {
+	  type: 'html-keyboard-response',
+	  stimulus: function(){
+	    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+	    if(last_trial_correct){
+	      return "<p>Correct!" + i + "</p>";
+	    } else {
+	      return "<p>incor inside the loop." + i + "</p>"
+	    }
+	  },
+		trial_duration: 500
+	}
+
 	var practice_block = {
 		type: 'html-keyboard-response',
 		stimulus: '<p style="font-size:80px";>'+stim+ ' '+ i+'</p>',
