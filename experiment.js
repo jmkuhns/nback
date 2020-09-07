@@ -170,17 +170,11 @@ var start_practice_block = {
 
 //Setup 2-back practice
 
-// timeline.push(matt_time);
-
- temporarily commenting the rest out.
 timeline.push(welcome);
 timeline.push(instructions_block);
 timeline.push(start_practice_block);
 
 for (var i = 0; i < (num_practice_trials); i++) {
-
-
-
 
 	if (i < 2) {
 	var stim = randomDraw(numbers);
