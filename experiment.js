@@ -136,9 +136,9 @@ var feedback = {
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     if(last_trial_correct){
-      return "<p>Correct!</p>";
+      return "<p>Correct!"+correct_response+"</p>";
     } else {
-      return "<p>boing.</p>"
+      return "<p>boing."+correct_response+"</p>"
     }
   },
 	trial_duration: 500
@@ -180,6 +180,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		choices: [37,39],
 		stimulus_duration: 500,
 		trial_duration: 3000,
+		response_ends_trial = false;
 		on_finish: function(data){
     if(data.key_press == correct_response){// 70 is the numeric code for f
       data.correct = true; // can add property correct by modify data object directly
