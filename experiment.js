@@ -6,24 +6,7 @@ a match or not
 */
 
 //Calculates whether the last trial was correct and records the accuracy in data object
-var record_acc = function() {
-	var global_trial = jsPsych.progress().current_trial_global
-	var stim = jsPsych.data.getData()[global_trial].stim
-	var target = jsPsych.data.getData()[global_trial].target
-	var key = jsPsych.data.getData()[global_trial].key_press
-	if (stim == target && key == 37) {
-		correct = true
-	} else if (stim != target && key == 39) {
-		correct = true
-	} else {
-		correct = false
-	}
-	jsPsych.data.addDataToLastTrial({
-		correct: correct,
-		trial_num: current_trial
-	})
-	current_trial = current_trial + 1
-}
+
 
 var randomDraw = function(lst) {
 	var index = Math.floor(Math.random() * (lst.length))
@@ -195,7 +178,13 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		choices: [37,39],
 		stimulus_duration: 500,
 		trial_duration: 3000,
-		on_finish: record_acc
+		on_finish: function(data){
+    if(data.key_press == correct_response){// 70 is the numeric code for f
+      data.correct = true; // can add property correct by modify data object directly
+    	} else {
+      data.correct = false;
+    	}
+  	}
 	};
 	timeline.push(practice_block, feedback);
 }
@@ -246,8 +235,8 @@ for (var b = 0; b < num_blocks; b++) {
 				choices: [37,39],
 				timing_stim: 500,
 				timing_response: 2500,
-				timing_post_trial: 0,
-				on_finish: record_acc
+				timing_post_trial: 0
+
 			};
 			timeline.push(test_block);
 		}
