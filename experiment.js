@@ -174,7 +174,6 @@ timeline.push(instructions_block);
 timeline.push(start_practice_block);
 
 for (var i = 0; i < (num_practice_trials); i++) {
-
 	if (i < 2) {
 	var stim = randomDraw(numbers);
 	stims.push(stim);
@@ -204,7 +203,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 			target: target
 		},
 		timeline_variables: stims_prac,
-		// /* correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
 		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
 		timing_feedback_duration: 500,
@@ -217,16 +216,71 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	timeline.push(practice_block);
 }
 
+for (var i = 0; i < (trials); i++) {
+	if (i < 2) {
+	var stim = randomDraw(numbers);
+	stims.push(stim);
+	} else if (i >= 2) {
+			if (success_prac_init[i] == 1){
+				var stim = stims[i-2];
+				target = stims[i-2];
+			} else{
+				var stim = randomDraw(numbers);
+				stims.push(stim);
+				target = stims[i - 2];
+			}
+	}
+	if (stim == target) {
+		correct_response = 37;
+	} else {
+		correct_response = 39;
+	}
+	var practice_block = {
+		type: 'html-keyboard-response',
+		stimulus: jsPsych.timelineVariable('stims_prac'),
+		key_answer: correct_response,
+		data: {
+			trial_id: "stim",
+			exp_stage: "practice",
+			stim: stims_prac,
+			target: target
+		},
+		timeline_variables: stims_prac,
+		correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
+		incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
+		timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
+		timing_feedback_duration: 500,
+		show_stim_with_feedback: false,
+		choices: [37,39],
+		timing_stim: 500,
+		timing_response: 2500,
+		timing_post_trial: 500
+	};
+	timeline.push(practice_block);
+}
 //Set up experiment
 //var n_back_experiment = [];
 
 //n_back_experiment = n_back_experiment.concat(practice_trials);
-/*
+
 var delay = 2;
+/*
+for (var i = 2; i <= stims.length; i++){
+	if (success_prac_init[i] == 1) {
+		stims_prac[i] = stims_prac[i-2];
+	}
+}
 
-var first_two = jsPsych.randomization.sampleWithoutReplacement(numbers, 2);
-
-
+for (var i = 2; i <= stims.length; i++) {
+	if (success_prac_init[i] == 0){
+		if( stims_prac[i] == stims_prac[i-2]){
+			numbers.splice(i, 1);
+			stims_prac[i] = randomDraw(numbers);
+			var numbers = [1,2,3,4,5,6,7,8,9];
+		}
+	}
+} */
+/*
 for (var b = 0; b < num_blocks; b++) {
 		var target = '';
 		stims = [];
