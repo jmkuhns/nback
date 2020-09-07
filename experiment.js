@@ -22,7 +22,7 @@ var timeline = [];
 var current_trial = 0;
 var numbers = [1,2,3,4,5,6,7,8,9];
 var success = [0,1];
-var num_blocks = 6;
+var num_blocks = 7;
 var num_trials = 20;
 var num_practice_trials = 20;
 var stims = []; //hold stims per block
@@ -117,9 +117,7 @@ var instructions_block = {
 var start_practice_block = {
 	type: "html-keyboard-response",
 	stimulus:
-	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.<br>' + stims_prac	+	'<br>' +
-	success_prac_init + '<br>'+
-	correct_responses + '</p>',
+	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.<br></p>',
 	data: {
 		trial_id: "instruction"
 	},
@@ -202,7 +200,8 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		      return '<p style="color:red;font-size:60px";>incorrect.</p>';
 		    }
 		  },
-			trial_duration: 500
+			trial_duration: 500,
+			post_trial_gap: 30
 		};
 	timeline.push(practice_block, feedback);
 }
@@ -212,73 +211,70 @@ for (var i = 0; i < (num_practice_trials); i++) {
 //var n_back_experiment = [];
 
 //n_back_experiment = n_back_experiment.concat(practice_trials);
-
-var b = 1;
 var test_brief = {
-  type: "html-keyboard-response",
+	type: "html-keyboard-response",
 	data: "instr",
-	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block' + b + '</p>',
-	on_load: function(){
-		var numbers = [1,2,3,4,5,6,7,8,9];
-		var num_trials = 20;
-//		var num_practice_trials = 20;
-		var stims = []; //hold stims per block
-		//var init = randomDraw(numbers);
-		var success_test = [0,0];
-		var success = [];
-//		var success_prac = [];
-//		var success_prac_init = [0,0];
+	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block 1.</p>'
+};
 
-		for (var i = 0; i <= 17; i++) {
-			    if(i <8) {
-		    success.push(0)
-		} else success.push(1)
-		}
+for (var b = 1; b < num_blocks; b++) {
+		//var target = '';
+		var test_inter = {
+			type: "html-keyboard-response",
+			data: "instr",
+			stimulus: '<p>You have now completed block ' + b + '. Press any key to continue.</p>',
+			on_load: function(){
+				var numbers = [1,2,3,4,5,6,7,8,9];
+				var num_trials = 20;
+		//		var num_practice_trials = 20;
+				var stims = []; //hold stims per block
+				//var init = randomDraw(numbers);
+				var success_test = [0,0];
+				var success = [];
+		//		var success_prac = [];
+		//		var success_prac_init = [0,0];
 
-		var success_draws = jsPsych.randomization.repeat(success, 1);
+				for (var i = 0; i <= 17; i++) {
+							if(i <8) {
+						success.push(0)
+				} else success.push(1)
+				}
 
-		success_test = success_test.concat(success_draws);
+				var success_draws = jsPsych.randomization.repeat(success, 1);
+
+				success_test = success_test.concat(success_draws);
 
 
-		for (var i  = 0; i < num_trials; i++){
-			stims.push(randomDraw(numbers));
-		}
+				for (var i  = 0; i < num_trials; i++){
+					stims.push(randomDraw(numbers));
+				}
 
-		for (var i = 2; i <= stims.length; i++){
-			if (success_test[i] == 1) {
-				stims[i] = stims[i-2];
-			}
-		}
+				for (var i = 2; i <= stims.length; i++){
+					if (success_test[i] == 1) {
+						stims[i] = stims[i-2];
+					}
+				}
 
-		for (var i = 2; i <= stims.length; i++) {
-			if (success_test[i] == 0){
-				if( stims[i] == stims[i-2]){
-					numbers.splice(i, 1);
-					stims[i] = randomDraw(numbers);
-					var numbers = [1,2,3,4,5,6,7,8,9];
+				for (var i = 2; i <= stims.length; i++) {
+					if (success_test[i] == 0){
+						if( stims[i] == stims[i-2]){
+							numbers.splice(i, 1);
+							stims[i] = randomDraw(numbers);
+							var numbers = [1,2,3,4,5,6,7,8,9];
+						}
+					}
+				}
+
+				var correct_responses = [];
+				for (i = 0; i < success_test.length; i++){
+					if (success_test[i] == 1){
+						correct_responses.push(37);
+					} else {
+						correct_responses.push(39);
+					}
 				}
 			}
 		}
-
-		var correct_responses = [];
-		for (i = 0; i < success_test.length; i++){
-			if (success_test[i] == 1){
-				correct_responses.push(37);
-			} else {
-				correct_responses.push(39);
-			}
-		}
-
-
-
-	}
-};
-
-
-
-for (var b = 1; b < num_blocks+1; b++) {
-		//var target = '';
-
 		for (var i = 0; i < num_trials; i++) {
 			if (success_test[i] == 1){
 				target = stims[i-2];
