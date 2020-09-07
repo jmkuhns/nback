@@ -155,7 +155,7 @@ var start_practice_block = {
 	post_trial_gap: 1000
 }
 
-var matt_time = {
+/*var matt_time = {
 	type: "html-keyboard-response",
 	stimulus: '<p> Half of the trials match the stimulus N back (2 back). <br>A random sequence of digits that would be chosen anew on each block for each participant will be shown below. Below that sequence is a sequence of 0s and 1s, where a 1 indicates that the element in that sequence matches the element 2 back, and a 0 indicates otherwise. Because of randomization, occasionally a 0 will match the element 2 back, but I am working on a fix for that.<br>' +
 	stims_prac	+	'<br>' +
@@ -166,7 +166,7 @@ var matt_time = {
 	'<br>Reload page to get a sense of how the sequences will go.</p>',
 	choices: jsPsych.NO_KEYS
 }
-
+*/
 
 //Setup 2-back practice
 
