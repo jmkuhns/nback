@@ -138,7 +138,7 @@ var feedback = {
     if(last_trial_correct){
       return "<p>Correct! " + correct_response+ " </p>";
     } else {
-      return "<p>spew. "+correct_response + " </p>"
+      return "<p>ssssshhhhhhh. "+ correct_response + " </p>"
     }
   },
 	trial_duration: 500
@@ -164,14 +164,14 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	//var stim = stims_prac[i];
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: stims_prac,
+		stimulus: jsPsych.timelineVariable('stims_prac'),
 		data: {
 			trial_id: "stim",
 			exp_stage: "practice",
 			stim: stims_prac,
 			target: target
 		},
-		//timeline_variables: stim,
+		timeline_variables: stims_prac,
 		//correct_text: '<p style="color:green;font-size:60px";>Correct!</p>',
 		//incorrect_text: '<p style="color:red;font-size:60px";>Incorrect</p>',
 		//timeout_message: '<p style="font-size:60px";>Respond Faster!</p>',
