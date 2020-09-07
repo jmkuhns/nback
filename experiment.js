@@ -202,9 +202,9 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		  stimulus: function(){
 		    var last_trial_correct = jsPsych.data.get().last(1).values()[0].accuracy;
 		    if(last_trial_correct == 1){
-		      return '<p style="color:green;font-size:60px";>Correct! ' </p>';
+		      return '<p style="color:green;font-size:60px";>Correct!</p>';
 		    } else {
-		      return '<p style="color:red;font-size:60px";>incorrect. </p>';
+		      return '<p style="color:red;font-size:60px";>incorrect.</p>';
 		    }
 		  },
 			trial_duration: 500
