@@ -66,43 +66,45 @@ for (var i = 0; i <= 17; i++) {
 
 
 var success_prac_draws = jsPsych.randomization.repeat(success_prac, 1);
-
+//
 var success_prac_draws_25 = jsPsych.randomization.repeat(success_prac_25, 1);
 
 
 success_prac_init = success_prac_init.concat(success_prac_draws);
 
-success_prac_init_25 = success_prac_init_25.concat(success_prac_draws_25);
+//success_prac_init_25 = success_prac_init_25.concat(success_prac_draws_25);
 
 var stims_prac = [];
-var stims_prac_25 = [];
+//var stims_prac_25 = [];
 
 for (var i  = 0; i < num_practice_trials; i++){
 	stims_prac.push(randomDraw(numbers));
-
 }
-for (var i  = 0; i < num_practice_trials; i++){
-	stims_prac_25.push(randomDraw(numbers));
-}
+//for (var i  = 0; i < num_practice_trials; i++){
+//	stims_prac_25.push(randomDraw(numbers));
+//}
 
 for (var i = 2; i <= stims_prac.length; i++){
 	if (success_prac_init[i] == 1) {
 		stims_prac[i] = stims_prac[i-2];
 	}
-/*	if (success_prac_init[i] == 0){
+}
+
+for (var i = 2; i <= stims_prac.length; i++) {
+	if (success_prac_init[i] == 0){
 		if( stims_prac[i] == stims_prac[i-2]){
 			var x = numbers.indexOf(stims_prac[i]);
 			var numb_minus = numbers.splice(x,1);
 			stims_prac[i] = randomDraw(numb_minus);
 		}
-	} */
+	}
 }
 
-for (var i = 2; i <= stims_prac_25.length; i++) {
-		if (success_prac_init_25[i] == 1) {
-			stims_prac_25[i] = stims_prac_25[i-2];
-		}
-}
+//for (var i = 2; i <= stims_prac_25.length; i++) {
+//		if (success_prac_init_25[i] == 1) {
+//			stims_prac_25[i] = stims_prac_25[i-2];
+//		}
+//}
 
 /*for (var i = 0; i < num_practice_trials; i++){
 	if (i < 2){
@@ -168,7 +170,7 @@ var matt_time = {
 
 //Setup 2-back practice
 
-timeline.push(matt_time);
+// timeline.push(matt_time);
 
 /* temporarily commenting the rest out.
 timeline.push(welcome);
