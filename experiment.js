@@ -136,9 +136,9 @@ var feedback = {
   stimulus: function(){
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     if(last_trial_correct){
-      return "<p>Correct! " + correct_response+ " </p>";
+      return "<p>Correct! " + correct_response + " </p>";
     } else {
-      return "<p>ssssshhhhhhh. "+ correct_response + " </p>"
+      return "<p>inco. "+ correct_response + " </p>"
     }
   },
 	trial_duration: 500
@@ -181,11 +181,23 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		trial_duration: 3000,
 		response_ends_trial: false,
 		on_finish: function(data){
-    if(data.key_press == correct_response){// 70 is the numeric code for f
-      data.correct = true; // can add property correct by modify data object directly
-    	} else {
-      data.correct = false;
-    	}
+
+			if (data.key_press == 37){
+				if (correct_response == 37){
+					data.correct = true;
+				} else {
+					data.correct = false;
+				}
+			}
+
+			if (data.key_press == 39){
+				if( correct_response == 39){
+					data.correct = true;
+				} else {
+					data.correct = false;
+				}
+			}
+
   	}
 	};
 	timeline.push(practice_block, feedback);
