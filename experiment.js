@@ -181,8 +181,8 @@ for (var i = 0; i < (num_practice_trials); i++) {
 
 
 
-	};
-
+	}
+};
 	var feedback = {
 		  type: 'html-keyboard-response',
 			trial_id: "feedback",
