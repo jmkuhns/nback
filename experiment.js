@@ -117,7 +117,7 @@ var instructions_block = {
 var start_practice_block = {
 	type: "html-keyboard-response",
 	stimulus:
-	'<p>Starting practice.<br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.<br></p>',
+	'<p>Starting practice.<br><br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><br><br><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p>',
 	data: {
 		trial_id: "instruction"
 	},
