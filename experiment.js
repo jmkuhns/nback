@@ -279,7 +279,7 @@ var correct_responses = [];
 
 			var test_block = {
 			type: 'html-keyboard-response',
-			stimulus: '<p style="font-size:60px";>'+ 'i: ' i + ' ' stim +'b: '+ b + ' </p>',
+			stimulus: '<p style="font-size:60px";>' + 'i: ' + i + ' ' stim +'b: '+ b + ' </p>',
 			data: {
 				trial_id: "stim",
 				exp_stage: "test",
