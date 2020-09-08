@@ -98,7 +98,10 @@ for (i = 0; i < success_prac_init.length; i++){
 /*define static blocks */
 var welcome = {
   type: "html-keyboard-response",
-  stimulus: '<p>Welcome to the experiment. Press any key to begin.</p>'
+  stimulus: '<p>Welcome to the experiment. Press any key to begin.</p>',
+	data: {
+	exp_stage: "instruction"
+	}
 };
 
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
@@ -108,7 +111,7 @@ var instructions_block = {
 	stimulus:
 	'<p>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the number matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the number that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5, and the right arrow key for every other number.</p><br><p>Press any key to continue</p>',
 	data: {
-		trial_id: "instruction"
+		exp_stage: "instruction"
 	},
 	post_trial_gap: 1000
 };
@@ -119,7 +122,7 @@ var start_practice_block = {
 	stimulus:
 	'<p>Starting practice.<br><br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><br><br><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment. Press any key to begin.</p>',
 	data: {
-		trial_id: "instruction"
+		exp_stage: "instruction"
 	},
 	post_trial_gap: 1000
 }
@@ -160,7 +163,6 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		type: 'html-keyboard-response',
 		stimulus: '<p style="font-size:60px";>' +stim +'</p>',
 		data: {
-			trial_id: "stim",
 			exp_stage: "practice",
 			stim: stims_prac,
 			target: target,
@@ -195,7 +197,10 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		    }
 		  },
 			trial_duration: 500,
-			post_trial_gap: 30
+			post_trial_gap: 30,
+			data:{
+				exp_stage: "feedback"
+			}
 		};
 	timeline.push(practice_block, feedback);
 }
@@ -206,7 +211,9 @@ for (var i = 0; i < (num_practice_trials); i++) {
 //n_back_experiment = n_back_experiment.concat(practice_trials);
 var test_brief = {
 	type: "html-keyboard-response",
-	data: "instr",
+	data: {
+		exp_stage: "instruction"
+	},
 	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block 1.</p>'
 };
 timeline.push(test_brief);
@@ -215,7 +222,9 @@ var b = 1;
 while (b < num_blocks){
 		var test_inter = {
 			type: "html-keyboard-response",
-			data: "instr",
+			data: {
+				exp_stage: "instruction"
+			},
 			stimulus: '<p>You have now completed block ' + b + '. Press any key to continue.</p>'
 		}
 
@@ -285,7 +294,8 @@ var correct_responses = [];
 				trial_id: "stim",
 				exp_stage: "test",
 				stim: stim,
-				target: target
+				target: target,
+				corr_resp: correct_response
 			},
 			choices: [37,39],
 			stimulus_duration: 500,
@@ -296,7 +306,7 @@ var correct_responses = [];
 					if (data.key_press == data.corr_resp){
 						data.accuracy = 1;
 
-					}else {
+					} else {
 							data.accuracy = 0;
 						}
 
@@ -304,7 +314,9 @@ var correct_responses = [];
 		}
 		timeline.push(test_block);
 	}
+if (b <= 5){
 timeline.push(test_inter);
+}
 b++;
 }
 
