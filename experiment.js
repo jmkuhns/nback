@@ -179,15 +179,8 @@ for (var i = 0; i < (num_practice_trials); i++) {
 				}
 
 
-		/*	if (data.key_press == 39){
-				if( correct_response == 39){
-					data.correct = true;
-				} else {
-					data.correct = false;
-				}
-			} */
 
-  	}
+
 	};
 
 	var feedback = {
@@ -207,7 +200,6 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	timeline.push(practice_block, feedback);
 }
 */
-
 //Set up experiment
 //var n_back_experiment = [];
 
