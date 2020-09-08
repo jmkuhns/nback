@@ -215,98 +215,96 @@ for (var b = 1; b < num_blocks; b++) {
 		var test_inter = {
 			type: "html-keyboard-response",
 			data: "instr",
-			stimulus: '<p>You have now completed block ' + b + '. Press any key to continue.</p>',
-			on_load: function(){
-				var numbers = [1,2,3,4,5,6,7,8,9];
-				var num_trials = 20;
-		//		var num_practice_trials = 20;
-				var stims = []; //hold stims per block
-				//var init = randomDraw(numbers);
-				var success_test = [0,0];
-				var success = [];
-		//		var success_prac = [];
-		//		var success_prac_init = [0,0];
-
-				for (var i = 0; i <= 17; i++) {
-							if(i <8) {
-						success.push(0)
-				} else success.push(1)
-				}
-
-				var success_draws = jsPsych.randomization.repeat(success, 1);
-
-				success_test = success_test.concat(success_draws);
-
-
-				for (var i  = 0; i < num_trials; i++){
-					stims.push(randomDraw(numbers));
-				}
-
-				for (var i = 2; i <= stims.length; i++){
-					if (success_test[i] == 1) {
-						stims[i] = stims[i-2];
-					}
-				}
-
-				for (var i = 2; i <= stims.length; i++) {
-					if (success_test[i] == 0){
-						if( stims[i] == stims[i-2]){
-							numbers.splice(i, 1);
-							stims[i] = randomDraw(numbers);
-							var numbers = [1,2,3,4,5,6,7,8,9];
-						}
-					}
-				}
-
-				var correct_responses = [];
-				for (i = 0; i < success_test.length; i++){
-					if (success_test[i] == 1){
-						correct_responses.push(37);
-					} else {
-						correct_responses.push(39);
-					}
-				}
-			}
+			stimulus: '<p>You have now completed block ' + b + '. Press any key to continue.</p>'
 		}
-		for (var i = 0; i < num_trials; i++) {
-			if (success_test[i] == 1){
-				target = stims[i-2];
-				//correct_response = 37;
-			} else {
-				target = stims[i];
-				//correct_response = 39;
-			}
-			var stim = stims[i];
-			var correct_response = correct_responses[i];
 
-			var test_block = {
-				type: 'html-keyboard-response',
-				stimulus: stim,
-				data: {
-					trial_id: "stim",
-					exp_stage: "test",
-					stim: stim,
-					target: target
-				},
-				choices: [37,39],
-				stimulus_duration: 500,
-				trial_duration: 3000,
-				response_ends_trial: false,
-				on_finish: function(data){
 
-						if (data.key_press == data.corr_resp){
-							data.accuracy = 1;
+var numbers = [1,2,3,4,5,6,7,8,9];
+var num_trials = 20;
+var stims = []; //hold stims per block
+var success_test = [0,0];
+var success = [];
 
-						}else {
-								data.accuracy = 0;
-							}
-
-				}
-
-			};
-			timeline.push(test_brief, test_block);
-		}
+for (var i = 0; i <= 17; i++) {
+			if(i <8) {
+		success.push(0)
+} else success.push(1)
 }
+
+var success_draws = jsPsych.randomization.repeat(success, 1);
+
+success_test = success_test.concat(success_draws);
+
+
+for (var i  = 0; i < num_trials; i++){
+	stims.push(randomDraw(numbers));
+}
+
+for (var i = 2; i <= stims.length; i++){
+	if (success_test[i] == 1) {
+		stims[i] = stims[i-2];
+	}
+}
+
+for (var i = 2; i <= stims.length; i++) {
+	if (success_test[i] == 0){
+		if( stims[i] == stims[i-2]){
+			numbers.splice(i, 1);
+			stims[i] = randomDraw(numbers);
+			var numbers = [1,2,3,4,5,6,7,8,9];
+		}
+	}
+}
+
+var correct_responses = [];
+for (i = 0; i < success_test.length; i++){
+			if (success_test[i] == 1){
+				correct_responses.push(37);
+			} else {
+				correct_responses.push(39);
+			}
+}
+
+
+for (var i = 0; i < num_trials; i++) {
+		if (success_test[i] == 1){
+		target = stims[i-2];
+		//correct_response = 37;
+		} else {
+		target = stims[i];
+		//correct_response = 39;
+		}
+		var stim = stims[i];
+		var correct_response = correct_responses[i];
+
+		var test_block = {
+		type: 'html-keyboard-response',
+		stimulus: stim,
+		data: {
+			trial_id: "stim",
+			exp_stage: "test",
+			stim: stim,
+			target: target
+		},
+		choices: [37,39],
+		stimulus_duration: 500,
+		trial_duration: 3000,
+		response_ends_trial: false,
+		on_finish: function(data){
+
+				if (data.key_press == data.corr_resp){
+					data.accuracy = 1;
+
+				}else {
+						data.accuracy = 0;
+					}
+
+		}
+	}
+}
+timeline.push(test_brief, test_block);
+}
+
 
 var debrief = {
   type: "html-keyboard-response",
