@@ -210,8 +210,7 @@ var test_brief = {
 	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block 1.</p>'
 };
 
-for (var b = 1; b < num_blocks; b++) {
-		//var target = '';
+while (b < num_blocks){
 		var test_inter = {
 			type: "html-keyboard-response",
 			data: "instr",
@@ -219,90 +218,91 @@ for (var b = 1; b < num_blocks; b++) {
 		}
 
 
-var numbers = [1,2,3,4,5,6,7,8,9];
-var num_trials = 20;
-var stims = []; //hold stims per block
-var success_test = [0,0];
-var success = [];
+	var numbers = [1,2,3,4,5,6,7,8,9];
+	var num_trials = 20;
+	var stims = []; //hold stims per block
+	var success_test = [0,0];
+	var success = [];
 
-for (var i = 0; i <= 17; i++) {
-			if(i <8) {
-		success.push(0)
-} else success.push(1)
-}
-
-var success_draws = jsPsych.randomization.repeat(success, 1);
-
-success_test = success_test.concat(success_draws);
-
-
-for (var i  = 0; i < num_trials; i++){
-	stims.push(randomDraw(numbers));
-}
-
-for (var i = 2; i <= stims.length; i++){
-	if (success_test[i] == 1) {
-		stims[i] = stims[i-2];
+	for (var n = 0; n <= 17; n++) {
+				if(n <8) {
+			success.push(0)
+	} else success.push(1)
 	}
-}
 
-for (var i = 2; i <= stims.length; i++) {
-	if (success_test[i] == 0){
-		if( stims[i] == stims[i-2]){
-			numbers.splice(i, 1);
-			stims[i] = randomDraw(numbers);
-			var numbers = [1,2,3,4,5,6,7,8,9];
+	var success_draws = jsPsych.randomization.repeat(success, 1);
+
+	success_test = success_test.concat(success_draws);
+
+
+	for (var m  = 0; m < num_trials; m++){
+		stims.push(randomDraw(numbers));
+	}
+
+	for (var l = 2; l <= stims.length; l++){
+		if (success_test[l] == 1) {
+			stims[l] = stims[l-2];
 		}
 	}
-}
+
+	for (var k = 2; k <= stims.length; k++) {
+		if (success_test[k] == 0){
+			if( stims[k] == stims[k-2]){
+				numbers.splice(k, 1);
+				stims[k] = randomDraw(numbers);
+				var numbers = [1,2,3,4,5,6,7,8,9];
+			}
+		}
+	}
 
 var correct_responses = [];
-for (i = 0; i < success_test.length; i++){
+	for (j = 0; j < success_test.length; j++){
+				if (success_test[j] == 1){
+					correct_responses.push(37);
+				} else {
+					correct_responses.push(39);
+				}
+	}
+
+
+	for (var i = 0; i < num_trials; i++) {
 			if (success_test[i] == 1){
-				correct_responses.push(37);
+			target = stims[i-2];
+			//correct_response = 37;
 			} else {
-				correct_responses.push(39);
+			target = stims[i];
+			//correct_response = 39;
 			}
-}
+			var stim = stims[i];
+			var correct_response = correct_responses[i];
 
+			var test_block = {
+			type: 'html-keyboard-response',
+			stimulus: '<p style="font-size:60px";>' +stim+' '+ b +' </p>',
+			data: {
+				trial_id: "stim",
+				exp_stage: "test",
+				stim: stim,
+				target: target
+			},
+			choices: [37,39],
+			stimulus_duration: 500,
+			trial_duration: 3000,
+			response_ends_trial: false,
+			on_finish: function(data){
 
-for (var i = 0; i < num_trials; i++) {
-		if (success_test[i] == 1){
-		target = stims[i-2];
-		//correct_response = 37;
-		} else {
-		target = stims[i];
-		//correct_response = 39;
-		}
-		var stim = stims[i];
-		var correct_response = correct_responses[i];
+					if (data.key_press == data.corr_resp){
+						data.accuracy = 1;
 
-		var test_block = {
-		type: 'html-keyboard-response',
-		stimulus: stim,
-		data: {
-			trial_id: "stim",
-			exp_stage: "test",
-			stim: stim,
-			target: target
-		},
-		choices: [37,39],
-		stimulus_duration: 500,
-		trial_duration: 3000,
-		response_ends_trial: false,
-		on_finish: function(data){
+					}else {
+							data.accuracy = 0;
+						}
 
-				if (data.key_press == data.corr_resp){
-					data.accuracy = 1;
-
-				}else {
-						data.accuracy = 0;
-					}
-
+			}
 		}
 	}
-}
 timeline.push(test_brief, test_block);
+b++;
 }
 
 
