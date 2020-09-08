@@ -209,7 +209,7 @@ var test_brief = {
 	data: "instr",
 	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block 1.</p>'
 };
-
+var b = 1;
 while (b < num_blocks){
 		var test_inter = {
 			type: "html-keyboard-response",
