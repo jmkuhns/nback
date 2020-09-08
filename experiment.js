@@ -295,7 +295,8 @@ var correct_responses = [];
 				exp_stage: "test",
 				stim: stim,
 				target: target,
-				corr_resp: correct_response
+				corr_resp: correct_response,
+				block: b
 			},
 			choices: [37,39],
 			stimulus_duration: 500,
