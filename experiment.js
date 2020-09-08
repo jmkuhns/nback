@@ -209,6 +209,7 @@ var test_brief = {
 	data: "instr",
 	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each. Press any key to begin block 1.</p>'
 };
+timeline.push(test_brief);
 var num_blocks = 7;
 var b = 1;
 while (b < num_blocks){
@@ -279,7 +280,7 @@ var correct_responses = [];
 
 			var test_block = {
 			type: 'html-keyboard-response',
-			stimulus: '<p style="font-size:60px";>' + 'i: ' + i + ' '+ stim +'b: '+ b + ' </p>',
+			stimulus: '<p style="font-size:60px";>' + 'i: ' + i + '  '+ stim +'b: '+ b + ' </p>',
 			data: {
 				trial_id: "stim",
 				exp_stage: "test",
@@ -301,8 +302,9 @@ var correct_responses = [];
 
 			}
 		}
+		timeline.push(test_block);
 	}
-timeline.push(test_brief, test_block);
+timeline.push(test_inter);
 b++;
 }
 
