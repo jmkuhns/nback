@@ -324,7 +324,8 @@ b++;
 
 var debrief = {
   type: "html-keyboard-response",
-	stimulus: "<p>Press any key to complete the experiment. Thank you!</p>"
+	stimulus: "<p>Press any key to proceed to the next task. Thank you!</p>",
+	data: {exp_stage: "instructions"}
 };
 
 timeline.push(debrief);
