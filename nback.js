@@ -1,11 +1,6 @@
-/*
-reference: http://www.sciencedirect.com/science/article/pii/S1053811905001424
-Cognitive control and brain resources in major depression: An fMRI study using the n-back task Harvey at al. 2005
-This task differs in that the subject only has to respond on target trials, rather than indicating whether the current trial is
-a match or not
-*/
-
-//Calculates whether the last trial was correct and records the accuracy in data object
+/* ************************************ */
+/* Define experimental variables */
+/* ************************************ */
 
 
 var randomDraw = function(lst) {
@@ -13,13 +8,10 @@ var randomDraw = function(lst) {
 	return lst[index]
 } // draws one number
 
-/* ************************************ */
-/* Define experimental variables */
-/* ************************************ */
 
 var timeline = [];
 // task specific variables
-/*
+
 var current_trial = 0;
 var numbers = [1,2,3,4,5,6,7,8,9];
 var success = [0,1];
@@ -91,13 +83,13 @@ for (i = 0; i < success_prac_init.length; i++){
 		correct_responses.push(39);
 	}
 }
-*/
+
 /* ************************************ */
 /* Set up jsPsych blocks */
 /* ************************************ */
 // Set up attention check node
 /*define static blocks */
-/*
+
 var welcome = {
   type: "html-keyboard-response",
   stimulus: '<p>Welcome to the experiment. Press any key to begin.</p>',
@@ -144,7 +136,7 @@ var start_practice_block = {
 
 //Setup 2-back practice
 
-/*
+
 timeline.push(welcome);
 timeline.push(instructions_block);
 timeline.push(start_practice_block);
@@ -323,7 +315,7 @@ timeline.push(test_inter);
 }
 b++;
 }
-*/
+
 var debrief = {
   type: "html-keyboard-response",
 	stimulus: "<p>Press any key to proceed to the next task. Thank you!</p>",
