@@ -156,7 +156,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: '<p style="font-size:60px";>' +stim +'</p><br><br><br><br><p style="font-size:30px">Press <- for a Match and press -> for No</p>',
+		stimulus: '<p style="font-size:60px";>' +stim +'</p><br><br><br><br><p style="font-size:30px">Press ‹— for a Match and press —› for No</p>',
 		data: {
 			exp_stage: "practice",
 			stim: stims_prac,
@@ -186,9 +186,9 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		  stimulus: function(){
 		    var last_trial_correct = jsPsych.data.get().last(1).values()[0].accuracy;
 		    if(last_trial_correct == 1){
-		      return '<p style="color:green;font-size:60px";>Correct!</p>';
+		      return '<p style="color:green;font-size:60px";>Correct!</p><br><br><br><br><p style="font-size:30px">Press ‹— for a Match and press —› for No</p>';
 		    } else {
-		      return '<p style="color:red;font-size:60px";>incorrect.</p>';
+		      return '<p style="color:red;font-size:60px";>incorrect.</p><br><br><br><br><p style="font-size:30px">Press ‹— for a Match and press —› for No</p>';
 		    }
 		  },
 			trial_duration: 500,
@@ -285,7 +285,7 @@ var correct_responses = [];
 			var test_block = {
 			type: 'html-keyboard-response',
 			stimulus:
-			'<p style="font-size:60px";>' + stim + '</p><br><br><br><br><p style="font-size:30px">Press <- for a Match and press -> for No</p>',
+			'<p style="font-size:60px";>' + stim + '</p><br><br><br><br><p style="font-size:30px">Press —› for a Match and press —› for No</p>',
 			data: {
 				trial_id: "stim",
 				exp_stage: "test",
