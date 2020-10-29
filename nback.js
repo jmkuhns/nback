@@ -157,7 +157,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	var practice_block = {
 		type: 'html-keyboard-response',
 		stimulus: '<p style="font-size:60px";>' +stim +'</p>',
-		prompt: '<p style="font-size:30px">Does this number match the one 2 back? Press ‹— for a Yes and press —› for No.</p>',
+		prompt: '<br><br><br><p style="font-size:25px">Does this number match the one 2 back? Press ‹— for a Yes and press —› for No.</p>',
 		data: {
 			exp_stage: "practice",
 			stim: stims_prac,
@@ -287,7 +287,7 @@ var correct_responses = [];
 			type: 'html-keyboard-response',
 			stimulus:
 			'<p style="font-size:60px";>' + stim + '</p>',
-			prompt: '<p style="font-size:30px">Does this number match the one 2 back? Press ‹— for a Yes and press —› for No.</p>',
+		prompt: '<br><br><br><p style="font-size:25px">Does this number match the one 2 back? Press ‹— for a Yes and press —› for No.</p>',
 			data: {
 				trial_id: "stim",
 				exp_stage: "test",
