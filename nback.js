@@ -156,7 +156,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 
 	var practice_block = {
 		type: 'html-keyboard-response',
-		stimulus: '<p style="font-size:60px";>' +stim +'</p>',
+		stimulus: '<p style="font-size:60px";>' +stim +'</p><br><br><br><br><p style="font-size:30px">Press <- for a Match and press -> for No</p>',
 		data: {
 			exp_stage: "practice",
 			stim: stims_prac,
@@ -284,7 +284,8 @@ var correct_responses = [];
 
 			var test_block = {
 			type: 'html-keyboard-response',
-			stimulus: '<p style="font-size:60px";>' + stim + '</p>',
+			stimulus:
+			'<p style="font-size:60px";>' + stim + '</p><br><br><br><br><p style="font-size:30px">Press <- for a Match and press -> for No</p>',
 			data: {
 				trial_id: "stim",
 				exp_stage: "test",
