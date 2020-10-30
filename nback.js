@@ -192,6 +192,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		      return '<p style="color:red;font-size:60px";>incorrect.';
 		    }
 		  },
+					prompt: '<br><br><br><p style="font-size:25px">Does this number match the one 2 back? Press ‹— for a Yes and press —› for No.</p>',
 			trial_duration: 500,
 			post_trial_gap: 30,
 			data:{
