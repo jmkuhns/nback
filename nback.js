@@ -194,7 +194,6 @@ for (var i = 0; i < (num_practice_trials); i++) {
 		  },
 					prompt: '<br><br><br><p style="font-size:25px">Does this number match the one 2 back? Press ‹— for a Yes and press —› for No.</p>',
 			trial_duration: 500,
-			post_trial_gap: 30,
 			data:{
 				exp_stage: "feedback"
 			}
@@ -211,7 +210,7 @@ var test_brief = {
 	data: {
 		exp_stage: "instruction"
 	},
-	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 6 blocks of 20 trials each.</p><br><p style:"font-size:25px";>Remember, there will not be feedback from this point on.</p><br><p>Press any key to begin block 1.</p>'
+	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 4 blocks of 20 trials each.</p><br><p style:"font-size:25px";>Remember, there will not be feedback from this point on.</p><br><p>Press any key to begin block 1.</p>'
 };
 timeline.push(test_brief);
 var num_blocks = 5;
