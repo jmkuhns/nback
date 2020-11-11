@@ -92,7 +92,7 @@ for (i = 0; i < success_prac_init.length; i++){
 
 var welcome = {
   type: "html-keyboard-response",
-  stimulus: '<p>Welcome to the experiment. Press any key to begin.</p>',
+  stimulus: '<p>Welcome to the 2-back task. Press any key to begin.</p>',
 	data: {
 	exp_stage: "instruction"
 	}
@@ -103,7 +103,7 @@ var instructions_block = {
 	type: "html-keyboard-response",
 
 	stimulus:
-	'<p>In this experiment you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the number matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the number that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5, and the right arrow key for every other number.</p><br><p>Press any key to continue</p>',
+	'<p>In this task you will see a sequence of numbers presented one at a time. Your job is to respond by pressing the <strong>left arrow key</strong> when the number matches the same number that occured 2 trials before, otherwise you should press the <strong>right arrow key</strong>.</p><p>You are supposed to press the left arrow key when the current number matches the number that occured 2 trials ago. If you saw the sequence: 4...0...1...3...4...5...6...5, you would press the left arrow key on the last 5, and the right arrow key for every other number.</p><br><p>Press any key to continue</p>',
 	data: {
 		exp_stage: "instruction"
 	},
@@ -114,7 +114,7 @@ var instructions_block = {
 var start_practice_block = {
 	type: "html-keyboard-response",
 	stimulus:
-	'<p>Starting practice.<br><br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><br><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main experiment.<br><br> Press any key to begin.</p>',
+	'<p>Starting practice.<br><br>During practice, you should press the left arrow key when the current number matches the number that appeared 2 trials before. Otherwise press the right arrow key. This means that for the first two trials, you should press the right arrow key, because there are no numbers 2 trials before.</p><br><p>You will receive feedback about whether you were correct or not during practice. There will be no feedback during the main task.<br><br> Press any key to begin.</p>',
 	data: {
 		exp_stage: "instruction"
 	},
@@ -201,7 +201,7 @@ for (var i = 0; i < (num_practice_trials); i++) {
 	timeline.push(practice_block, feedback);
 }
 
-//Set up experiment
+//Set up
 //var n_back_experiment = [];
 
 //n_back_experiment = n_back_experiment.concat(practice_trials);
@@ -210,7 +210,7 @@ var test_brief = {
 	data: {
 		exp_stage: "instruction"
 	},
-	stimulus: '<p>You have now completed the practice trials. The experiment will consist of 4 blocks of 20 trials each.</p><br><p style:"font-size:25px";>Remember, there will not be feedback from this point on.</p><br><p>Press any key to begin block 1.</p>'
+	stimulus: '<p>You have now completed the practice trials. The task will consist of 4 blocks of 20 trials each.</p><br><p style:"font-size:25px";>Remember, there will not be feedback from this point on.</p><br><p>Press any key to begin block 1.</p>'
 };
 timeline.push(test_brief);
 var num_blocks = 5;
