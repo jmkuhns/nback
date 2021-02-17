@@ -216,7 +216,10 @@ var test_brief = {
 	stimulus: '<p>You have now completed the practice trials. The task will consist of 4 blocks of 20 trials each.</p><br><p style:"font-size:25px";>Remember, there will not be feedback from this point on.</p><br><p>Press any key to begin block 1.</p>'
 };
 timeline.push(test_brief);
-var num_blocks = 5;
+
+// var num_blocks = 5;
+var num_blocks = 2;
+
 var b = 1;
 while (b < num_blocks){
 		var test_inter = {
