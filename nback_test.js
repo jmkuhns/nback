@@ -218,7 +218,7 @@ var test_brief = {
 timeline.push(test_brief);
 
 // var num_blocks = 5;
-var num_blocks = 2;
+var num_blocks = 1;
 
 var b = 1;
 while (b < num_blocks){
